@@ -54,7 +54,7 @@ const search = (nums, target) => {
 const findPivot = (nums) => {
     // return smallest val's idx
     if (nums.length === 1) return -1
-    if (nums[0] < nums[nums.length-1]) return -1
+    // if (nums[0] < nums[nums.length-1]) return -1
     
     let left = 1
     let right = nums.length-1
