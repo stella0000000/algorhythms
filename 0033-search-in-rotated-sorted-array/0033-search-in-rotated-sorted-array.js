@@ -19,20 +19,21 @@ O(logn) - binary search?
 */
 
 const search = (nums, target) => {
-    // binary search nums arr if sorted
     const smallestIdx = nums.findIndex((num, idx) => idx>0 && nums[idx-1] > num)
     
     let left = 0
-    let right = 0
+    let right = nums.length-1
     
-    if (target > nums[nums.length-1]) {
-        // look to left of target idx
-        left = 0
-        right = smallestIdx-1
-    } else {
-        // look to right of target idx
-        left = smallestIdx
-        right = nums.length-1
+    if (smallestIdx >= 0) {
+        if (target > nums[nums.length-1]) {
+            // look to left of target idx
+            left = 0
+            right = smallestIdx-1
+        } else {
+            // look to right of target idx
+            left = smallestIdx
+            right = nums.length-1
+        }
     }
     
     while (left <= right) {
