@@ -30,15 +30,7 @@ p.val === q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
  * @param {TreeNode} q
  * @return {boolean}
  */
-var isSameTree = function(p, q) {
-    // if (p?.val !== q?.val) {
-    //     return false
-    // } else if(!p?.left && !p?.right && !q?.left && !q?.right) {
-    //     return true
-    // } else {
-    //     return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
-    // }
-    
+var isSameTree = function(p, q) {    
     if (!p && !q) return true
     if (!p || !q) return false
     if (p.val !== q.val) return false
