@@ -12,11 +12,11 @@ const longestConsecutive = (nums) => {
         let count = 0
         
         if (beginningOfSequence) {
-            let curr = num++
+            // num++
             
-            while (set.has(curr)) {
+            while (set.has(num)) {
                 count++
-                curr++
+                num++
             }
         }
         
