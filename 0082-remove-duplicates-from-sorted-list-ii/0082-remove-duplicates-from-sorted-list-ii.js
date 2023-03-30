@@ -17,27 +17,24 @@
 // else go to next node
 
 var deleteDuplicates = function(head) {
-  const temp = { next: head }
-
-  let prev = temp
-  let current = head
-  
-  while (current) {
-    let isDuplicate = false
+    let dummy = new ListNode(null, head)
+    let curr = dummy
     
-    while (current.next && current.val === current.next.val) {
-      isDuplicate = true
-      current.next = current.next.next
+    if (!curr.next) return head
+    
+    while (curr.next && curr.next.next) {
+        if (curr.next.val !== curr.next.next.val) {
+            curr = curr.next            
+        } else { // equality
+            let cursor = curr.next.next
+            while (cursor.next && cursor.next.val === curr.next.val) {
+                cursor = cursor.next
+            }
+            curr.next = cursor.next
+
+        }
     }
-      
-    current = current.next
-      
-    if (isDuplicate) {
-      prev.next = current
-      isDuplicate = false
-    } else {
-      prev = prev.next
-    }
-  }
-  return temp.next
+    
+    return dummy.next
+    
 };
