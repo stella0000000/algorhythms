@@ -18,19 +18,19 @@
 
 var deleteDuplicates = function(head) {
     let dummy = new ListNode(null, head)
-    let curr = dummy
+    let prev = dummy
+    let curr = head
     
-    if (!curr.next) return head
-    
-    while (curr.next && curr.next.next) {
-        if (curr.next.val !== curr.next.next.val) {
-            curr = curr.next            
+    while (curr && curr.next) {
+        if (curr.val !== curr.next.val) {
+            prev = curr
+            curr = curr.next
         } else { // equality
-            let cursor = curr.next.next
-            while (cursor.next && cursor.next.val === curr.next.val) {
-                cursor = cursor.next
+            while (curr.next && prev.next.val === curr.next.val) {
+                curr = curr.next
             }
-            curr.next = cursor.next
+            prev.next = curr.next
+            curr = prev.next
 
         }
     }
