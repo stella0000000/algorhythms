@@ -11,8 +11,6 @@
  * @return {boolean}
  */
 
-
-
 const isValidBST = (root) => {
     // start with root
     // root.left.val < root.val < root.right.val
@@ -42,14 +40,17 @@ const isValidNode = (node, minSeen, maxSeen) => {
     // if there's nothing on this side, it's valid
     if (!node) return true
 
+    // is the node valid
     if ((minSeen < node.val && node.val < maxSeen) === false) {
         return false
     }
     
+    // is the left subtree valid => recursively, check the node, and its subtrees
     if (isValidNode(node.left, minSeen, node.val) === false) {
         return false
     }
 
+    // is the right subtree valid => recursively, check the node, and its subtrees
     if (isValidNode(node.right, node.val, maxSeen) === false) {
         return false
     }
