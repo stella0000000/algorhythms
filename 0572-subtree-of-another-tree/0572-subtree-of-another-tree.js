@@ -19,7 +19,7 @@
     // and node vals of subRoot
 // else return false
 
-var isSubtree = function(root, subRoot) {
+const isSubtree = (root, subRoot) => {
     // are the nodes unique?
     // find matching subtree root
         // then we have potential subtree
@@ -47,7 +47,7 @@ var isSubtree = function(root, subRoot) {
     if (leftRes || rightRes) return true
 
     return false
-};
+}
 
 const isIdentical = (root, subRoot) => {
     // here we found matching roots
