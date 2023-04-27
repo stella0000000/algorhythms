@@ -9,16 +9,27 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-const reverseList = head => {
-    // [ PREV ] [ CURR ] [ NEXT ]
-    //          [ PREV]  [ CURR ] [ NEXT ]
-    // [ NEXT ] [ CURR ] [ PREV ]
-    let node = null
-
-    while (head) {
-        node = new ListNode(head.val, node)
-        head = head.next
+const reverseList = (head) => {
+    // before: [PREV] [CURR] [CURR.NEXT]
+    // after:  [NEXT] [CURR] [PREV]
+    //                [PREV] [CURR] [NEXT]
+    
+    let prev = null
+    let curr = head
+    
+    while (curr) {
+        // hold next in a temporary variable
+        let next = curr.next
+        
+        // set next to (original) prev
+        curr.next = prev
+        
+        // set prev to (original) next
+        prev = next
+        
+        prev = curr    // increment prev
+        curr = next    // increment curr
     }
-
-    return node
+    
+    return prev
 };
