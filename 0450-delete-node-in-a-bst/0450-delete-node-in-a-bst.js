@@ -48,22 +48,26 @@ const deleteNode = (root, val) => {
         root.left = deleteNode(root.left, val)
         // updated BST assigned to root.left
     } else {                 // delete root
-        if (!root.left) {
+        if (!root.left && !root.right) {
+            return null
+        } else if (!root.left) {
             return root.right
         } else if (!root.right) {
             return root.left
         } else {
             // find min from right subtree
-            let minNode = minValueNode(root.right)
-            root.val = minNode.val
-            root.right = deleteNode(root.right, minNode.val)
+            let successor = findSuccessor(root.right)
+            root.val = successor.val
+            
+            // returns subtree with value deleted
+            root.right = deleteNode(root.right, successor.val) // recursively delete successor
         }
     }
     
     return root
 }
 
-const minValueNode = (root) => {
+const findSuccessor = (root) => {
     let curr = root
     while (curr && curr.left) {
         curr = curr.left
