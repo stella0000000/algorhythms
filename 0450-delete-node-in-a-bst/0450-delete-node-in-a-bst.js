@@ -37,6 +37,8 @@
                 // point parent to grandchild
                 // point predecessor to children of node it's replacing
 
+
+
 const deleteNode = (root, val) => {
     if (!root) return null
     
@@ -44,12 +46,14 @@ const deleteNode = (root, val) => {
         root.right = deleteNode(root.right, val)
     } else if (val < root.val) {
         root.left = deleteNode(root.left, val)
-    } else {
+        // updated BST assigned to root.left
+    } else {                 // delete root
         if (!root.left) {
             return root.right
         } else if (!root.right) {
             return root.left
         } else {
+            // find min from right subtree
             let minNode = minValueNode(root.right)
             root.val = minNode.val
             root.right = deleteNode(root.right, minNode.val)
