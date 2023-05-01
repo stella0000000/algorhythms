@@ -37,41 +37,88 @@
                 // point parent to grandchild
                 // point predecessor to children of node it's replacing
 
-
-
-const deleteNode = (root, val) => {
-    if (!root) return null
+const deleteNode = (currRoot, val) => {
+    if (!currRoot) return currRoot
     
-    if (val > root.val) {
-        root.right = deleteNode(root.right, val)
-    } else if (val < root.val) {
-        root.left = deleteNode(root.left, val)
-        // updated BST assigned to root.left
-    } else {                 // delete root
-        if (!root.left && !root.right) {
-            return null
-        } else if (!root.left) {
-            return root.right
-        } else if (!root.right) {
-            return root.left
-        } else {
-            // find min from right subtree
-            let successor = findSuccessor(root.right)
-            root.val = successor.val
-            
-            // returns subtree with value deleted
-            root.right = deleteNode(root.right, successor.val) // recursively delete successor
+    if (val < currRoot.val) {
+        currRoot.left = deleteNode(currRoot.left, val)
+    } else if (val > currRoot.val) {
+        currRoot.right = deleteNode(currRoot.right, val)
+    } else {        // equality
+        if (!currRoot.left && !currRoot.right) {  // 0-child
+            return null     // gotta delete the curr node: currRoot
+        } else if (!currRoot.left) {              // 1-child
+            return currRoot.right
+        } else if (!currRoot.right) {
+            return currRoot.left
+        } else {                                  // 2-children
+            let successor = findSuccessor(currRoot.right)
+            // update the subtree where successor is now at currRoot
+            // get deleted branch FIRST, before you add
+            // subtree without successor
+            successor.right = deleteNode(currRoot.right, successor.val) // subtree without successor
+            successor.left = currRoot.left
+            return successor
         }
     }
     
-    return root
+    return currRoot
 }
 
-const findSuccessor = (root) => {
-    let curr = root
-    while (curr && curr.left) {
-        curr = curr.left
-    }
-    
-    return curr
+
+// pass val of node back up tree
+// to stick it where it needs to go!
+
+const findSuccessor = (curr) => {
+    if (curr.left) return findSuccessor(curr.left)
+    else return curr
+
+    // while (curr && curr.left) curr = curr.left
+    // return curr
 }
+
+
+
+
+
+
+
+
+
+
+// const deleteNode = (root, val) => {
+//     if (!root) return null
+    
+//     if (val > root.val) {
+//         root.right = deleteNode(root.right, val)
+//     } else if (val < root.val) {
+//         root.left = deleteNode(root.left, val)
+//         // updated BST assigned to root.left
+//     } else {                 // delete root
+//         if (!root.left && !root.right) {
+//             return null
+//         } else if (!root.left) {
+//             return root.right
+//         } else if (!root.right) {
+//             return root.left
+//         } else {
+//             // find min from right subtree
+//             let successor = findSuccessor(root.right)
+//             root.val = successor.val
+            
+//             // returns subtree with value deleted
+//             root.right = deleteNode(root.right, successor.val) // recursively delete successor
+//         }
+//     }
+    
+//     return root
+// }
+
+// const findSuccessor = (root) => {
+//     let curr = root
+//     while (curr && curr.left) {
+//         curr = curr.left
+//     }
+    
+//     return curr
+// }
