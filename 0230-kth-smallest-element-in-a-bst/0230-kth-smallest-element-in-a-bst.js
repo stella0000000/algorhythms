@@ -17,18 +17,20 @@
 
 // initialize curr at root
     // continue traversing to leftest leaf
+    // zig zag picking up the right nodes => down to leaves
+    // when can we pop from the stack?
+    // how do we keep track of mins?
 
 const kthSmallest = (root, k) => {
-    // inorder traversal
-        // get the leftmost node
-        // go back up
-        // traverse to right node
-        // down to right leaf
-        // think: zig zag
+    // iterative
+    // initialize count var
+        // once count === k, return node.val
+    // initialize a curr to keep track of curr node
+    // initialize a stack
+        // we want to start popping from stack @ leftmost leaf
+    // we need to check if there are right children
     
-    if (!root) return null
     let count = 0
-    // const arr = []
     const stack = []
     let curr = root
     
@@ -38,19 +40,29 @@ const kthSmallest = (root, k) => {
             curr = curr.left
         }
         
-        // now we're at leftmost leaf
-        
         curr = stack.pop()
         count++
         if (count === k) return curr.val
-        // arr.push(curr.val)
         curr = curr.right
-    }
-    
-    // console.log(arr)
+    } 
 }
 
 
+// const kthSmallest = (root, k) => {
+//     const arr = []
+//     traverse(root, arr)
+//     return arr[k-1]
+// }
+
+// const traverse = (root, arr) => {
+//     // do the traversal inorder
+//     // and push to arr inorder vals
+//     // doesn't need to return since it has ref to arr
+//     if (!root) return
+//     traverse(root.left, arr)
+//     arr.push(root.val)
+//     traverse (root.right, arr)
+// }
 
 
 
@@ -61,6 +73,37 @@ const kthSmallest = (root, k) => {
 
 
 
+// const kthSmallest = (root, k) => {
+//     // inorder traversal
+//         // get the leftmost node
+//         // go back up
+//         // traverse to right node
+//         // down to right leaf
+//         // think: zig zag
+    
+//     if (!root) return null
+//     let count = 0
+//     // const arr = []
+//     const stack = []
+//     let curr = root
+    
+//     while (curr || stack.length) {
+//         while (curr) {
+//             stack.push(curr)
+//             curr = curr.left
+//         }
+        
+//         // now we're at leftmost leaf
+        
+//         curr = stack.pop()
+//         count++
+//         if (count === k) return curr.val
+//         // arr.push(curr.val)
+//         curr = curr.right
+//     }
+    
+//     // console.log(arr)
+// }
 
 
 // var kthSmallest = function(root, k) {
