@@ -35,15 +35,15 @@ const kthSmallest = (root, k) => {
     let curr = root
     
     while (curr || stack.length) {
-        while (curr) {
+        if (curr) {
             stack.push(curr)
             curr = curr.left
+        } else if (stack.length) {
+            curr = stack.pop()
+            count++
+            if (count === k) return curr.val
+            curr = curr.right
         }
-        
-        curr = stack.pop()
-        count++
-        if (count === k) return curr.val
-        curr = curr.right
     } 
 }
 
