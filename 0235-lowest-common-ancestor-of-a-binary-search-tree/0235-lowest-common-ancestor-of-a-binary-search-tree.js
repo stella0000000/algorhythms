@@ -28,7 +28,6 @@ const lowestCommonAncestor = (root, p, q) => {
     }
     
     while (curr) {
-        console.log({ curr, smaller, larger })
         if (smaller <= curr.val && curr.val <= larger) {
             return curr
         } else if (smaller < curr.val && larger < curr.val) {
