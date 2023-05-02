@@ -18,22 +18,26 @@ const lowestCommonAncestor = (root, p, q) => {
     // if p = q -> j = p and q
     let curr = root
     
-    let smaller, larger
-    if (p.val < q.val) {
-        smaller = p.val
-        larger = q.val
+    const smaller = Math.min(p.val, q.val)
+    const larger = Math.max(p.val, q.val)
+    
+    // recursive
+    if (smaller <= curr.val && curr.val <= larger) {
+        return curr
+    } if (larger < curr.val) {
+        return lowestCommonAncestor(curr.left, p, q)
     } else {
-        smaller = q.val
-        larger = p.val
+        return lowestCommonAncestor(curr.right, p, q)
     }
     
-    while (curr) {
-        if (smaller <= curr.val && curr.val <= larger) {
-            return curr
-        } else if (smaller < curr.val && larger < curr.val) {
-            curr = curr.left
-        } else {
-            curr = curr.right
-        }
-    }
+    // iterative!
+    // while (curr) {
+    //     if (smaller <= curr.val && curr.val <= larger) {
+    //         return curr
+    //     } else if (larger < curr.val) {
+    //         curr = curr.left
+    //     } else {
+    //         curr = curr.right
+    //     }
+    // }
 }
