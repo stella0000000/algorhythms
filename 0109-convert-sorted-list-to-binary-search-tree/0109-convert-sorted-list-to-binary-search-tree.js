@@ -45,6 +45,7 @@ const balanceBSTarr = (arr) => {
     return root
 }
 
+// sorted arr of LL nodes, but then make it into treenodes for our BST
 const convertToSortedArr = (head) => {
     let curr = head
     let sorted = []
