@@ -28,16 +28,20 @@ const reverseBetween = (head, left, right) => {
     // reverse from left to right
     let prev = null
     for (let i=0; i<right-left+1; i++) {
-        let tempNext = curr.next
+        let next = curr.next
         curr.next = prev
         prev = curr
-        curr = tempNext
+        curr = next
     }
+    console.log({ leftPrev, prev, curr })
     
+    // link 2 to 5
     leftPrev.next.next = curr
+    // link 1 to 4
     leftPrev.next = prev
-    return dummyNode.next
+    console.log({leftPrev})
     
+    return dummyNode.next
 }
 
 // const reverseBetween = (head, left, right) => {
@@ -113,43 +117,6 @@ const reverseBetween = (head, left, right) => {
 //     }
     
 //     return prev
-// }
-
-// var reverseBetween = function(head, left, right) {
-//   var dummyNode = new ListNode(0)
-//   var curr = dummyNode
-//   var tmp = null
-//   var reverseLast = null
-//   var reverseHead = null
-//   var reverseCurr = null
-//   var i = 0
-
-//   dummyNode.next = head
-
-//   while (curr) {
-//     tmp = curr.next
-
-//     if (i === left - 1) {   // start of reversal
-//       reverseHead = curr
-//     } else if (i === left) {
-//       reverseLast = curr
-//       reverseCurr = curr
-//     } else if (i > left && i <= right) {
-//       curr.next = reverseCurr
-//       reverseCurr = curr
-//     }
-
-//     if (i === right) {      // we are now at head of the tail
-//       reverseLast.next = tmp
-//       reverseHead.next = reverseCurr
-//       break
-//     }
-
-//     curr = tmp
-//     i++
-//   }
-
-//   return dummyNode.next
 // }
 
 // const reverseBetween = (head, left, right) => {
