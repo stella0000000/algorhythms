@@ -10,32 +10,75 @@
  * @param {Node|null} root
  * @return {number[][]}
  */
-var levelOrder = function(root) {
+
+const levelOrder = root => {
     if (!root) return []
     // BFS
     
     const res = []
     const queue = [ root ]
-    let levelArr = []
+    let levelNodes = []
     
-    // queue represents nodes at that level
-
     while (queue.length) {
-        let queueLength = queue.length
+        let numNodesAtLevel = queue.length
         
         // iterate through current level
-        for (let i=0; i<queueLength; i++) {
+        for (let i=0; i<numNodesAtLevel; i++) {
             let curr = queue.shift()
-            levelArr.push(curr.val)
+            levelNodes.push(curr.val)
             
             for (let child of curr.children) {
                 queue.push(child)
             }
         }
         
-        res.push(levelArr)
-        levelArr = []
+        res.push(levelNodes)
+        levelNodes = []
     }
+    
     
     return res
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// var levelOrder = function(root) {
+//     if (!root) return []
+//     // BFS
+    
+//     const res = []
+//     const queue = [ root ]
+//     let levelArr = []
+    
+//     // queue represents nodes at that level
+
+//     while (queue.length) {
+//         let queueLength = queue.length
+        
+//         // iterate through current level
+//         for (let i=0; i<queueLength; i++) {
+//             let curr = queue.shift()
+//             levelArr.push(curr.val)
+            
+//             for (let child of curr.children) {
+//                 queue.push(child)
+//             }
+//         }
+        
+//         res.push(levelArr)
+//         levelArr = []
+//     }
+    
+//     return res
+// }
