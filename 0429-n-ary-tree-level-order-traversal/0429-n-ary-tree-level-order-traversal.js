@@ -16,7 +16,7 @@ var levelOrder = function(root) {
     
     const res = []
     const queue = [ root ]
-    let subArr = []
+    let levelArr = []
 
     while (queue.length) {
         let queueLength = queue.length
@@ -24,15 +24,15 @@ var levelOrder = function(root) {
         // iterate through current level
         for (let i=0; i<queueLength; i++) {
             let curr = queue.shift()
-            subArr.push(curr.val)
+            levelArr.push(curr.val)
             
             for (let child of curr.children) {
                 queue.push(child)
             }
         }
         
-        res.push(subArr)
-        subArr = []
+        res.push(levelArr)
+        levelArr = []
     }
     
     return res
