@@ -14,35 +14,60 @@
 
 const reverseBetween = (head, left, right) => {
     let dummyNode = new ListNode(0, head)
-    
-    // reach node at position "left"
     let leftPrev = dummyNode
-    let curr = head
+    let leftNode = head
     
     for (let i=0; i<left-1; i++) {
-        leftPrev = curr
-        curr = curr.next
+        leftPrev = leftNode
+        leftNode = leftNode.next
     }
     
-    // now curr="left", leftPrev = node before left
-    // reverse from left to right
     let prev = null
-    for (let i=0; i<right-left+1; i++) {
-        let next = curr.next
-        curr.next = prev
-        prev = curr
-        curr = next
+    let numReverse = right - left + 1
+    for (let i=0; i<numReverse; i++) {
+        let nextTemp = leftNode.next
+        leftNode.next = prev
+        prev = leftNode
+        leftNode = nextTemp
     }
-    console.log({ leftPrev, prev, curr })
     
-    // link 2 to 5
-    leftPrev.next.next = curr
-    // link 1 to 4
+    leftPrev.next.next = leftNode
     leftPrev.next = prev
-    console.log({leftPrev})
     
     return dummyNode.next
 }
+
+// const reverseBetween = (head, left, right) => {
+//     let dummyNode = new ListNode(0, head)
+    
+//     // reach node at position "left"
+//     let leftPrev = dummyNode
+//     let curr = head
+    
+//     for (let i=0; i<left-1; i++) {
+//         leftPrev = curr
+//         curr = curr.next
+//     }
+    
+//     // now curr="left", leftPrev = node before left
+//     // reverse from left to right
+//     let prev = null
+//     for (let i=0; i<right-left+1; i++) {
+//         let next = curr.next
+//         curr.next = prev
+//         prev = curr
+//         curr = next
+//     }
+//     console.log({ leftPrev, prev, curr })
+    
+//     // link 2 to 5
+//     leftPrev.next.next = curr
+//     // link 1 to 4
+//     leftPrev.next = prev
+//     console.log({leftPrev})
+    
+//     return dummyNode.next
+// }
 
 // const reverseBetween = (head, left, right) => {
 //     if (!head.next || left === right) return head
