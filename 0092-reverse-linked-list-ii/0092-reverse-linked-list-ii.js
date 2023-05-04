@@ -15,23 +15,23 @@
 const reverseBetween = (head, left, right) => {
     let dummyNode = new ListNode(0, head)
     let leftPrev = dummyNode
-    let leftNode = head
+    let curr = head
     
     for (let i=0; i<left-1; i++) {
-        leftPrev = leftNode
-        leftNode = leftNode.next
+        leftPrev = curr
+        curr = curr.next
     }
     
     let prev = null
     let numReverse = right - left + 1
     for (let i=0; i<numReverse; i++) {
-        let nextTemp = leftNode.next
-        leftNode.next = prev
-        prev = leftNode
-        leftNode = nextTemp
+        let nextTemp = curr.next
+        curr.next = prev
+        prev = curr
+        curr = nextTemp
     }
     
-    leftPrev.next.next = leftNode
+    leftPrev.next.next = curr
     leftPrev.next = prev
     
     return dummyNode.next
