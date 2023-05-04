@@ -17,6 +17,8 @@ var levelOrder = function(root) {
     const res = []
     const queue = [ root ]
     let levelArr = []
+    
+    // queue represents nodes at that level
 
     while (queue.length) {
         let queueLength = queue.length
