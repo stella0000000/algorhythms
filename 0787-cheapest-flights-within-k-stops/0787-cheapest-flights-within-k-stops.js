@@ -14,7 +14,7 @@ const findCheapestPrice = (n, flights, src, dst, K) => {
     
     // 2. BFS but with optimizations (a) and (b)
     let queue = [{ from: src, costSoFar: 0, stopsLeft: K + 1 }]; // (1)
-    let cheapest = Number.MAX_SAFE_INTEGER;
+    let cheapest = Infinity
     
     while(queue.length) {
         let { from, costSoFar, stopsLeft } = queue.shift();
@@ -24,7 +24,7 @@ const findCheapestPrice = (n, flights, src, dst, K) => {
         // optimization (a) - simply don't continue searching this path if we've exhausted K stops
         if(stopsLeft <= 0) continue;
         // optimization (b) - simply don't continue searching if we've already found a cheaper cost already
-        if(cheapest !== Number.MAX_SAFE_INTEGER && costSoFar > cheapest) continue;
+        if(cheapest !== Infinity && costSoFar > cheapest) continue;
         
         for(let [nextStop, cost] of Object.entries(graph[from])) {
             if(nextStop == dst) {
@@ -35,7 +35,7 @@ const findCheapestPrice = (n, flights, src, dst, K) => {
         }
     }
     
-    return cheapest === Number.MAX_SAFE_INTEGER ? -1 : cheapest;
+    return cheapest === Infinity ? -1 : cheapest;
 }
 
 const buildGraph = (flights, dst) => {
