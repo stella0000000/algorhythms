@@ -9,8 +9,8 @@
 
 const findCheapestPrice = (n, flights, src, dst, K) => {    
     // 1. Build Graph
-    const graph = buildGraph(flights, dst);
-    if(graph === null) return -1;
+    const graph = buildGraph(flights, dst)
+    if (graph === null) return -1
     
     // 2. BFS but with optimizations (a) and (b)
     let queue = [{ from: src, costSoFar: 0, stopsLeft: K + 1 }]; // (1)
@@ -19,23 +19,23 @@ const findCheapestPrice = (n, flights, src, dst, K) => {
     while(queue.length) {
         let { from, costSoFar, stopsLeft } = queue.shift();
         
-        if(!graph[from]) continue; // no flights from this stop
+        if (!graph[from]) continue; // no flights from this stop
         
         // optimization (a) - simply don't continue searching this path if we've exhausted K stops
-        if(stopsLeft <= 0) continue;
+        if(stopsLeft <= 0) continue
         // optimization (b) - simply don't continue searching if we've already found a cheaper cost already
-        if(cheapest !== Infinity && costSoFar > cheapest) continue;
+        if (cheapest !== Infinity && costSoFar > cheapest) continue
         
-        for(let [nextStop, cost] of Object.entries(graph[from])) {
+        for (let [nextStop, cost] of Object.entries(graph[from])) {
             if(nextStop == dst) {
-                cheapest = Math.min(cheapest, costSoFar + cost);
+                cheapest = Math.min(cheapest, costSoFar + cost)
             } else {
                 queue.push({ from: nextStop, costSoFar: costSoFar + cost, stopsLeft: stopsLeft - 1 });
             }
         }
     }
     
-    return cheapest === Infinity ? -1 : cheapest;
+    return cheapest === Infinity ? -1 : cheapest
 }
 
 const buildGraph = (flights, dst) => {
