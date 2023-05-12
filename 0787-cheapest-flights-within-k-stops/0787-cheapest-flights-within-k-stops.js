@@ -17,7 +17,7 @@ const findCheapestPrice = (n, flights, src, dst, K) => {
     let cheapest = Number.MAX_SAFE_INTEGER;
     
     while(queue.length) {
-        let { from, costSoFar, stopsLeft, path } = queue.shift();
+        let { from, costSoFar, stopsLeft } = queue.shift();
         
         if(!graph[from]) continue; // no flights from this stop
         
