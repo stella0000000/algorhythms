@@ -14,8 +14,8 @@ var solve = function(board) {
     for (let r=0; r<numRows; r++) flip(board, r, numCols-1)
     for (let c=0; c<numCols; c++) flip(board, numRows-1, c)
     
-    for (let r=0; r<numRows; r++) {
-        for (let c=0; c<numCols; c++) {
+    for (let r in board) {
+        for (let c in board[0]) {
             if (board[r][c] === '#') board[r][c] = 'O'
             else if (board[r][c] === 'O') board[r][c] = 'X'
         }
@@ -33,16 +33,8 @@ const flip = (board, r, c) => {
     
     board[r][c] = '#'
 
-    // const deltas = [ [1,0], [-1,0], [0,1], [0,-1] ]
-    
-    // for (let delta of deltas) {
-    //     const [dr, dc] = delta
-    //     const nr = r + dr
-    //     const nc = c + dc
-        
     flip(board, r+1, c)
     flip(board, r-1, c)
     flip(board, r, c+1)
     flip(board, r, c-1)
-    // }
 }
