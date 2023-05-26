@@ -33,13 +33,16 @@ const flip = (board, r, c) => {
     
     board[r][c] = '#'
 
-    const deltas = [ [1,0], [-1,0], [0,1], [0,-1] ]
+    // const deltas = [ [1,0], [-1,0], [0,1], [0,-1] ]
     
-    for (let delta of deltas) {
-        const [dr, dc] = delta
-        const nr = r + dr
-        const nc = c + dc
+    // for (let delta of deltas) {
+    //     const [dr, dc] = delta
+    //     const nr = r + dr
+    //     const nc = c + dc
         
-        flip(board, nr, nc)
-    }
+    flip(board, r+1, c)
+    flip(board, r-1, c)
+    flip(board, r, c+1)
+    flip(board, r, c-1)
+    // }
 }
