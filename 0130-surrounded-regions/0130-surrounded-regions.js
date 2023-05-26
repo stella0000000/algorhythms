@@ -9,10 +9,14 @@ var solve = function(board) {
     const numRows = board.length
     const numCols = board[0].length
     
-    for (let r=0; r<numRows; r++) flip(board, r, 0)
-    for (let c=0; c<numCols; c++) flip(board, 0, c)
-    for (let r=0; r<numRows; r++) flip(board, r, numCols-1)
-    for (let c=0; c<numCols; c++) flip(board, numRows-1, c)
+    for (let r=0; r<numRows; r++) {
+        flip(board, r, 0)
+        flip(board, r, numCols-1)
+    }
+    for (let c=0; c<numCols; c++) {
+        flip(board, 0, c)
+        flip(board, numRows-1, c)
+    }
     
     for (let r=0; r<numRows; r++) {
         for (let c=0; c<numCols; c++) {
