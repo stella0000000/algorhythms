@@ -14,8 +14,8 @@ var solve = function(board) {
     for (let r=0; r<numRows; r++) flip(board, r, numCols-1)
     for (let c=0; c<numCols; c++) flip(board, numRows-1, c)
     
-    for (let r in board) {
-        for (let c in board[0]) {
+    for (let r=0; r<numRows; r++) {
+        for (let c=0; c<numCols; c++) {
             if (board[r][c] === '#') board[r][c] = 'O'
             else if (board[r][c] === 'O') board[r][c] = 'X'
         }
