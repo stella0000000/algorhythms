@@ -29,7 +29,7 @@ const flip = (board, r, c) => {
     const cInBounds = c >= 0 && c < board[0].length
     
     if (!rInBounds || !cInBounds) return
-    if (board[r][c] === 'X' || board[r][c] === '#') return
+    if (board[r][c] !== 'O') return
     
     board[r][c] = '#'
 
