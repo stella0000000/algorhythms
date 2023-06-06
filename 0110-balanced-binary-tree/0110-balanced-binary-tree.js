@@ -25,9 +25,10 @@ const isBalanced = (root) => {
         if (!root) return 0
         
         let leftHeight = dfs(root.left)
-        let rightHeight = dfs(root.right)
+        if (leftHeight === -1) return -1
         
-        if (leftHeight === -1 || rightHeight === -1) return -1
+        let rightHeight = dfs(root.right)
+        if (rightHeight === -1) return -1
         
         let balanceFactor = Math.abs(leftHeight - rightHeight)
         
