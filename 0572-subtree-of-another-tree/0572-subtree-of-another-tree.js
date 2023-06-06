@@ -12,6 +12,33 @@
  * @return {boolean}
  */
 
+const isSubtree = (root, subRoot) => {
+    // traverse root tree
+    const queue = [ root ]
+    
+    while (queue.length) {
+        const node = queue.shift()
+        
+        if (isIdentical(node, subRoot)) return true
+        
+        if (node.left) queue.push(node.left)
+        if (node.right) queue.push(node.right)
+    }    
+    
+    return false
+}
+
+const isIdentical = (node, subRoot) => {
+    if (!node && !subRoot) return true
+    if (!node || !subRoot) return false
+    if (node.val !== subRoot.val) return false
+    
+    const left = isIdentical(node.left, subRoot.left)
+    const right = isIdentical(node.right, subRoot.right)
+    
+    return left && right
+}
+
 // given roots of 2 BTs: root, subRoot
 // return true if
     // there's a subtree of root
@@ -19,7 +46,7 @@
     // and node vals of subRoot
 // else return false
 
-const isSubtree = (root, subRoot) => {
+// const isSubtree = (root, subRoot) => {
     // are the nodes unique?
     // find matching subtree root
         // then we have potential subtree
@@ -34,37 +61,37 @@ const isSubtree = (root, subRoot) => {
     // here in the main function
     // let's find all the subtree roots where they match
     
-    if (root.val === subRoot.val) {
-        if (isIdentical(root, subRoot)) return true
-    }
+//     if (root.val === subRoot.val) {
+//         if (isIdentical(root, subRoot)) return true
+//     }
     
-    // keep traversing til the vals match
-    let leftRes, rightRes
+//     // keep traversing til the vals match
+//     let leftRes, rightRes
 
-    if (root.left) leftRes = isSubtree(root.left, subRoot)
-    if (root.right) rightRes = isSubtree(root.right, subRoot)
+//     if (root.left) leftRes = isSubtree(root.left, subRoot)
+//     if (root.right) rightRes = isSubtree(root.right, subRoot)
 
-    if (leftRes || rightRes) return true
+//     if (leftRes || rightRes) return true
 
-    return false
-}
+//     return false
+// }
 
-const isIdentical = (root, subRoot) => {
-    // here we found matching roots
-    // now we need to check if the subtrees are identical
+// const isIdentical = (root, subRoot) => {
+//     // here we found matching roots
+//     // now we need to check if the subtrees are identical
     
-    // check current nodes
-    // avoid null checks too ahead
+//     // check current nodes
+//     // avoid null checks too ahead
     
-    // base case - push true up
-    // we reached the leaves
-    if (!root && !subRoot) return true
+//     // base case - push true up
+//     // we reached the leaves
+//     if (!root && !subRoot) return true
     
-    if (!root || !subRoot) return false
-    if (root.val !== subRoot.val) return false
+//     if (!root || !subRoot) return false
+//     if (root.val !== subRoot.val) return false
     
-    const left = isIdentical(root.left, subRoot.left)
-    const right = isIdentical(root.right, subRoot.right)
+//     const left = isIdentical(root.left, subRoot.left)
+//     const right = isIdentical(root.right, subRoot.right)
     
-    return left && right
-}
+//     return left && right
+// }
