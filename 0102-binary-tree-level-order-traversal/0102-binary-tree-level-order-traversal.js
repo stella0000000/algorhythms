@@ -20,14 +20,10 @@ var levelOrder = function(root) {
     while (queue.length) {
         [ node, level ] = queue.shift()
         
-        if (res.length === 0) {
+        if (res.length === level) {
             res[level] = [node.val]
         } else {
-            if (res[level]) {
-                res[level].push(node.val)
-            } else {
-                res[level] = [node.val]
-            }
+            res[level].push(node.val)
         }
         
         if (node.left) queue.push([ node.left, level+1 ])
