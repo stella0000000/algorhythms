@@ -11,9 +11,6 @@
  * @return {number[]}
  */
 
-// level order traversal
-// 
-
 var rightSideView = function(root) {
     const levels = {}
     fillLevels(root, levels, 0)
