@@ -15,7 +15,6 @@ var levelOrder = function(root) {
     
     const res = []
     const queue = [ [root, 0] ]
-    let subArr = []
     
     while (queue.length) {
         [ node, level ] = queue.shift()
