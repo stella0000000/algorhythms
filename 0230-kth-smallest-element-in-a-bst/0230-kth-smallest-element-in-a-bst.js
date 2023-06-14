@@ -12,6 +12,32 @@
  * @return {number}
  */
 
+const kthSmallest = (root, k) => {
+    let count = 0
+    
+    const inorder = (node, k) => {
+        if (!node) return -1
+
+        let left = inorder(node.left, k)
+        count++ // 1
+        if (count === k) return node.val
+        let right = inorder(node.right, k)
+        
+        return Math.max(left, right)
+    }
+    
+    return inorder(root, k)
+}
+
+
+
+
+
+
+
+
+
+
 // input: root of BST, int k 
 // return kth smallest 1-index value of nodes in the tree
 
@@ -21,31 +47,31 @@
     // when can we pop from the stack?
     // how do we keep track of mins?
 
-const kthSmallest = (root, k) => {
-    // iterative
-    // initialize count var
-        // once count === k, return node.val
-    // initialize a curr to keep track of curr node
-    // initialize a stack
-        // we want to start popping from stack @ leftmost leaf
-    // we need to check if there are right children
+// const kthSmallest = (root, k) => {
+//     // iterative
+//     // initialize count var
+//         // once count === k, return node.val
+//     // initialize a curr to keep track of curr node
+//     // initialize a stack
+//         // we want to start popping from stack @ leftmost leaf
+//     // we need to check if there are right children
     
-    let count = 0
-    const stack = []
-    let curr = root
+//     let count = 0
+//     const stack = []
+//     let curr = root
     
-    while (curr || stack.length) {
-        if (curr) {
-            stack.push(curr)
-            curr = curr.left
-        } else if (stack.length) {
-            curr = stack.pop()
-            count++
-            if (count === k) return curr.val
-            curr = curr.right
-        }
-    } 
-}
+//     while (curr || stack.length) {     // O(num of nodes)
+//         if (curr) {                    // O(1)
+//             stack.push(curr)
+//             curr = curr.left
+//         } else {     // O(1)
+//             curr = stack.pop()
+//             count++
+//             if (count === k) return curr.val   // O(1)
+//             curr = curr.right
+//         }
+//     } 
+// }
 
 
 // const kthSmallest = (root, k) => {
