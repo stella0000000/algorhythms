@@ -1,44 +1,21 @@
 var characterReplacement = function (s, k) {
-    let [left, right, longest, max] = new Array(4).fill(0);
-    const frequencyMap = new Array(26).fill(0);
-
-    while (right < s.length) {
-        const count = addRightFrequency(s, right, frequencyMap);
-
-        longest = Math.max(longest, count);
-
-        let window = right - left + 1;
-        const canSlide = k < window - longest;
-        if (canSlide) {
-            subtractLeftFrequency(s, left, frequencyMap);
-            left++;
+    const count = {}
+    let res = 0
+    
+    let l = 0
+    let maxf = 0
+    
+    for (r=0; r<s.length; r++) {
+        count[s[r]] = count[s[r]] ? 1 + count[s[r]] : 1
+        maxf = Math.max(maxf, count[s[r]])
+         
+        if ((r-l+1) - maxf > k) {
+            count[s[l]] -= 1
+            l++
         }
-
-        window = right - left + 1;
-        max = Math.max(max, window);
-
-        right++;
+         
+        res = Math.max(res, r-l+1)
     }
-
-    return max;
-};
-
-const addRightFrequency = (s, right, map) => {
-    const char = s[right];
-    const index = getCode(char);
-
-    map[index]++;
-
-    return map[index];
-};
-
-const subtractLeftFrequency = (s, left, map) => {
-    const char = s[left];
-    const index = getCode(char);
-
-    map[index]--;
-
-    return map[index];
-};
-
-const getCode = (char) => char.charCodeAt(0) - 'A'.charCodeAt(0);
+    
+    return res
+}
