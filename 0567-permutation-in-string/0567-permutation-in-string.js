@@ -8,23 +8,32 @@
 var checkInclusion = function(s1, s2) {
     if (s1.length > s2.length) return false
     
-    let h1 = hashy(s1)
-    let h2 = {}
-    
     let left = 0
     let right = s1.length - 1
     
-    while (right < s2.length) {
-        h2 = hashy(s2.slice(left, right+1))
-        
+    let h1 = hashy(s1)
+    let h2 = hashy(s2.slice(left, right+1))
+    
+    while (right < s2.length) {        
         if (hashyEquality(h1, h2)) return true
         else {
+            remove(s2[left], h2)
             left++
             right++
+            add(s2[right], h2)
         }
     }
     
     return false
+}
+
+const add = (char, h) => {
+    if (!(char in h)) h[char] = 0
+    h[char]++
+}
+
+const remove = (char, h) => {
+    h[char]--
 }
 
 const hashyEquality = (h1, h2) => {
