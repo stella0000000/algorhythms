@@ -11,9 +11,6 @@ var checkInclusion = function(s1, s2) {
     let h1 = hashy(s1)
     let h2 = {}
     
-    let ha1 = hashy(s1)
-    let ha2 = {}
-    
     let left = 0
     let right = s1.length - 1
     
