@@ -14,13 +14,14 @@ var checkInclusion = function(s1, s2) {
     let h1 = hashy(s1)
     let h2 = hashy(s2.slice(left, right+1))
     
-    while (right < s2.length) {        
+    while (right < s2.length) {
         if (hashyEquality(h1, h2)) return true
         
         remove(s2[left], h2)
         left++
         right++
-        add(s2[right], h2)
+        if (right >= s2.length) break
+            add(s2[right], h2)
     }
     
     return false
