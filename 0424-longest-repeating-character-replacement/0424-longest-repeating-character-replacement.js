@@ -1,20 +1,21 @@
 var characterReplacement = function (s, k) {
     const count = {}
     let res = 0
-    
-    let l = 0
+    let left = 0
     let maxf = 0
     
-    for (r=0; r<s.length; r++) {
-        count[s[r]] = count[s[r]] ? 1 + count[s[r]] : 1
-        maxf = Math.max(maxf, count[s[r]])
+    // what info do you need => char frequency
+    // to adjust window moving forward
+    for (right=0; right<s.length; right++) {
+        count[s[right]] = count[s[right]] ? 1 + count[s[right]] : 1
+        maxf = Math.max(maxf, count[s[right]])
          
-        if ((r-l+1) - maxf > k) {
-            count[s[l]] -= 1
-            l++
+        if ((right-left+1) - maxf > k) {
+            count[s[left]]--
+            left++
         }
          
-        res = Math.max(res, r-l+1)
+        res = Math.max(res, right-left+1)
     }
     
     return res
