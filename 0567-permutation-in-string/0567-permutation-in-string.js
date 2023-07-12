@@ -6,7 +6,7 @@
 
 // static sliding window
 var checkInclusion = function(s1, s2) {
-    if (s1.length > s2.length) return false
+    // if (s1.length > s2.length) return false
     
     let left = 0
     let right = s1.length - 1
