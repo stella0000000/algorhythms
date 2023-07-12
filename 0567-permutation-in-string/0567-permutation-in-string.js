@@ -16,12 +16,11 @@ var checkInclusion = function(s1, s2) {
     
     while (right < s2.length) {        
         if (hashyEquality(h1, h2)) return true
-        else {
-            remove(s2[left], h2)
-            left++
-            right++
-            add(s2[right], h2)
-        }
+        
+        remove(s2[left], h2)
+        left++
+        right++
+        add(s2[right], h2)
     }
     
     return false
