@@ -6,22 +6,23 @@
 
 // static sliding window
 var checkInclusion = function(s1, s2) {
-    // if (s1.length > s2.length) return false
+    if (s1.length > s2.length) return false
     
     let left = 0
     let right = s1.length - 1
     
-    let h1 = hashy(s1)
-    let h2 = hashy(s2.slice(left, right+1))
+    let h1 = hashy(s1) // length of s1 = n
+    let h2 = hashy(s2.slice(left, right+1)) // n
     
-    while (right < s2.length) {
-        if (hashyEquality(h1, h2)) return true
+    // m * n
+    while (right < s2.length) { // [m - n]
+        if (hashyEquality(h1, h2)) return true // n
         
-        remove(s2[left], h2)
+        remove(s2[left], h2) // constant
         left++
         right++
         if (right >= s2.length) break
-            add(s2[right], h2)
+            add(s2[right], h2) // constant
     }
     
     return false
@@ -37,7 +38,7 @@ const remove = (char, h) => {
 }
 
 const hashyEquality = (h1, h2) => {
-    for (let char in h1) {
+    for (let char in h1) { // n
         if (!(char in h2)) return false
         if (h1[char] !== h2[char]) return false
     }
