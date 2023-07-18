@@ -14,14 +14,19 @@
 // bsearch O(n logm)
 var minEatingSpeed = function (piles, h) {
     let [left, right] = [1, Math.max(...piles)]
-
+    
     while (left < right) {
+        // const mid = (left + right) >> 1 // bit shift!!!!!
         const mid = Math.floor((left + right)/2)
         const hourSpent = getHourSpent(mid, piles)
 
+        // eating too slowly
+        // continue searching RIGHT
         const isTargetGreater = h < hourSpent
         if (isTargetGreater) left = mid + 1
 
+        // eating too quickly or ok
+        // keep searching LEFT
         const isTargetLess = hourSpent <= h
         if (isTargetLess) right = mid
     }
@@ -29,9 +34,10 @@ var minEatingSpeed = function (piles, h) {
     return right
 }
 
-const getHourSpent = (mid, piles, hourSpent = 0) => {
-    for (const pile of piles) {
-        hourSpent += Math.ceil(pile / mid)
+const getHourSpent = (mid, piles) => {
+    let hourSpent = 0
+    for (const bananas of piles) {
+        hourSpent += Math.ceil(bananas / mid)
     }
 
     return hourSpent
