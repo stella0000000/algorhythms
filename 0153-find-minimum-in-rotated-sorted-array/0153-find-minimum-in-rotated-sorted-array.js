@@ -2,6 +2,12 @@
  * @param {number[]} nums
  * @return {number}
  */
+
+// [ 3 1 2]
+// lNum = 3, rNum = 2
+// guess = 1
+// right = mid-1 = 0
+
 const findMin = (nums) => {
     let [left, right] = [0, nums.length - 1]
     
@@ -11,7 +17,7 @@ const findMin = (nums) => {
         const [leftNum, rightNum] = [nums[left], nums[right]]
 
         const isTarget = leftNum < rightNum
-        if (isTarget) return leftNum // base case we had
+        if (isTarget) return leftNum
 
         const isTargetGreater = leftNum <= guess
         if (isTargetGreater) left = mid + 1
