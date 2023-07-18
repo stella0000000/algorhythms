@@ -11,7 +11,7 @@ const findMin = (nums) => {
         const [leftNum, rightNum] = [nums[left], nums[right]]
 
         const isTarget = leftNum < rightNum
-        if (isTarget) return leftNum
+        if (isTarget) return leftNum // base case we had
 
         const isTargetGreater = leftNum <= guess
         if (isTargetGreater) left = mid + 1
