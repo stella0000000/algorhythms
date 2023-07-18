@@ -16,7 +16,7 @@ var minEatingSpeed = function (piles, h) {
     let [left, right] = [1, Math.max(...piles)]
 
     while (left < right) {
-        const mid = (left + right) >> 1
+        const mid = Math.floor((left + right)/2)
         const hourSpent = getHourSpent(mid, piles)
 
         const isTargetGreater = h < hourSpent
