@@ -3,76 +3,56 @@
  * @param {number} target
  * @return {number}
  */
-
-/*
-O(n)
-    look @ first ele
-    look @ last ele
-    if last < first - rotate by one til it's true
-    return number of times you rotated
-    shift() + push()
-
-O(logn) - binary search?
-    find the smallest value, idx
-    
-
-*/
-
-const search = (nums, target) => {
-    const smallestIdx = findPivot(nums)
+var search = function(nums, target) {
+    const pivot = findPivot(nums)
     
     let left = 0
     let right = nums.length-1
     
-    if (smallestIdx >= 0) {
-        if (target > nums[nums.length-1]) {
-            // look to left of target idx
-            left = 0
-            right = smallestIdx-1
-        } else {
-            // look to right of target idx
-            left = smallestIdx
-            right = nums.length-1
-        }
-    }
-    
     while (left <= right) {
-        let mid = Math.floor((left+right) / 2)
+        let mid = (left + right) >> 1
+        let shiftedIdx =  (mid + pivot) % nums.length
+        let midVal = nums[shiftedIdx]
         
-        if (nums[mid] === target) {
-            return mid
-        } else if (nums[mid] > target) {
-            right = mid - 1 // we looked @ mid already
-       } else {
-            left = mid + 1 // we looked @ mid already dont forget zack!
-       }
+        if (midVal === target) {
+            return shiftedIdx
+        } else if (midVal < target) {
+            // go up
+            left = mid + 1
+        } else if (midVal > target) {
+            right = mid - 1
+        }
     }
     
     return -1
 };
 
+
+// find pivot index
+// map idx after that
+// left = 0
+// right is length
+
 const findPivot = (nums) => {
-    // return smallest val's idx
-    if (nums.length === 1) return -1
-    if (nums[0] < nums[nums.length-1]) return -1
+    let [left, right] = [0, nums.length - 1]
     
-    let left = 1
-    let right = nums.length-1
-    
-    while (left <= right) {
-        let mid = Math.floor((left+right) / 2)
-        let leftVal = nums[mid-1]
-        let midVal = nums[mid]
-        
-        if (leftVal > midVal) {
-            return mid
-        } else if (midVal > nums[0]) {
-            // we go right
-            left = mid+1
-       } else {
-            right = mid-1
-       }
+    // guaranteed to find target
+    while (left < right) {
+        const mid = (left + right) >> 1
+        const guess = nums[mid]
+        const [leftNum, rightNum] = [nums[left], nums[right]]
+
+        const isTarget = leftNum < rightNum
+        if (isTarget) return left
+
+        // right chunk
+        const isTargetGreater = leftNum <= guess
+        if (isTargetGreater) left = mid + 1
+
+        // left chunk
+        const isTargetLess = guess < leftNum
+        if (isTargetLess) right = mid
     }
-    
-    return -1   // arr is sorted
+
+    return left
 }
