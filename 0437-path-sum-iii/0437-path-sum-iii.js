@@ -42,15 +42,15 @@ var pathSum = function(root, targetSum) {
         if (!node) return
         if (node.val === target) count++
         
-        node.right && traverse(node.right, target-node.val)
-        node.left && traverse(node.left, target-node.val)
+        if (node.right) traverse(node.right, target-node.val)
+        if (node.left) traverse(node.left, target-node.val)
     }
 
     while (stack.length) {
         const node = stack.pop()
         traverse(node, targetSum)
-        node.right && stack.push(node.right)
-        node.left && stack.push(node.left)
+        if (node.right) stack.push(node.right)
+        if (node.left) stack.push(node.left)
     }
     
     return count
