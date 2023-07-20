@@ -33,14 +33,6 @@ const addOneRow = (root, val, depth) => {
     return root
 }
 
-// const addOneRow = (root, val, depth, leanR) => {
-//     depth--
-//     if (!depth || !root) return leanR ? new TreeNode(val, null, root) : new TreeNode(val, root)
-//     if (root.left || depth === 1) root.left = addOneRow(root.left, val, depth, false)
-//     if (root.right || depth === 1) root.right = addOneRow(root.right, val, depth, true)
-//     return root
-// }
-
 // var addOneRow = function(root, val, depth) {
 //     if (depth === 1) return new TreeNode(val, root)
 
