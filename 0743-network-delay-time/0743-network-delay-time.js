@@ -12,33 +12,39 @@
 // return: min time it takes from all n nodes to receive the signal
 // impossible ? -1
 
-var networkDelayTime = function(times, N, K) {
-    // initialize visited set
+var networkDelayTime = function(times, n, k) {
     // initialize distance map => set all nodes' dist. to Inf
     // initialize queue
-    // 
     
-    const tt = new Array(N + 1).fill(Infinity);
-    tt[0] = 0;
-    tt[K] = 0;
-
-    let flag = true;
-
-      while (flag) {
-        flag = false;
-          console.log({ tt })
-        times.forEach(([u, v, w]) => {
-          if (tt[u] !== Infinity && tt[v] > tt[u] + w) {
-            tt[v] = tt[u] + w;
-            flag = true;
-          }
+    const distances = new Array(n+1).fill(Number.MAX_SAFE_INTEGER);
+    distances[0] = 0; // no 0th node
+    distances[k] = 0; // source node
+    
+    const travels = new Array(n+1).fill().map(() => []);
+    
+    times.forEach(t => {
+        travels[t[0]].push([t[1], t[2]]);
+    });
+    
+    const queueNode = [k];
+    
+    while(queueNode.length > 0){
+        const topNode = queueNode.shift();
+        
+        travels[topNode].forEach(c => {
+            if(distances[topNode]+c[1] < distances[c[0]]){
+                distances[c[0]] = distances[topNode]+c[1];
+                queueNode.push(c[0]);  
+            }
         });
-      }
+    }
+    const max = Math.max(...distances);
+    
+    if(max === Number.MAX_SAFE_INTEGER){
+        return -1;
+    }
 
-      const res = Math.max(...tt);
-
-    // console.log({ tt })
-  return res === Infinity ? -1 : res;
+    return max; 
 };
 
 // directed
