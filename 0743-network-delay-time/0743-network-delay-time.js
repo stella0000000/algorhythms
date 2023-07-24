@@ -15,36 +15,35 @@
 var networkDelayTime = function(times, n, k) {
     // initialize distance map => set all nodes' dist. to Inf
     // initialize queue
+    // DFS
     
-    const distances = new Array(n+1).fill(Number.MAX_SAFE_INTEGER);
-    distances[0] = 0; // no 0th node
-    distances[k] = 0; // source node
+    const distances = new Array(n+1).fill(Number.MAX_SAFE_INTEGER)
+    distances[0] = 0 // no 0th node
+    distances[k] = 0 // source node
     
-    const travels = new Array(n+1).fill().map(() => []);
+    const travels = new Array(n+1).fill().map(() => [])
     
     times.forEach(t => {
-        travels[t[0]].push([t[1], t[2]]);
-    });
+        travels[t[0]].push([t[1], t[2]])
+    })
     
-    const queueNode = [k];
+    const queueNode = [k]
     
     while(queueNode.length > 0){
-        const topNode = queueNode.shift();
+        const topNode = queueNode.shift()
         
         travels[topNode].forEach(c => {
-            if(distances[topNode]+c[1] < distances[c[0]]){
-                distances[c[0]] = distances[topNode]+c[1];
-                queueNode.push(c[0]);  
+            if (distances[topNode]+c[1] < distances[c[0]]) {
+                distances[c[0]] = distances[topNode]+c[1]
+                queueNode.push(c[0])
             }
-        });
+        })
     }
-    const max = Math.max(...distances);
+    const max = Math.max(...distances)
     
-    if(max === Number.MAX_SAFE_INTEGER){
-        return -1;
-    }
+    if (max === Number.MAX_SAFE_INTEGER) return -1
 
-    return max; 
+    return max
 };
 
 // directed
