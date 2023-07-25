@@ -73,7 +73,8 @@ var maxProbability = function(n, edges, succProb, start, end) {
     probMap[start] = 1 // 100% getting from the start to the start
     
     const queue = new PriorityQueue({
-        compare: (a, b) => b[0] - a[0]
+        compare: (a, b) => b[0] - a[0] // MAX WE WANT MAX HERE
+        // compare: (a, b) => a[0] - b[0] // MIN
     })
     
     queue.enqueue([probMap[start], start])
