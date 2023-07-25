@@ -26,6 +26,7 @@ var networkDelayTime = function(times, n, k) {
     times.forEach(t => {
         travels[t[0]].push([t[1], t[2]])
     })
+    // travels[source] = [[destination, weight]]
     
     const queueNode = [k]
     
