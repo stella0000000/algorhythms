@@ -7,6 +7,43 @@
  * @return {number}
  */
 
+// var maxProbability = function (n, edges, succProb, start, end) {
+//     const adjacencyList = getAdjacencyList(edges, succProb, n)
+//     const visited = Array(n).fill(false)
+//     const queue = new PriorityQueue({
+//         compare: (a, b) => b[1] - a[1]
+//     })
+
+//     queue.enqueue([start, 1])
+
+//     while (!queue.isEmpty()) {
+//         const [vertex, totalProb] = queue.dequeue()
+//         if (visited[vertex]) continue
+//         if (vertex === end) return totalProb
+
+//         visited[vertex] = true
+
+//         for (const [neighbor, prob] of adjacencyList[vertex]) {
+//             queue.enqueue([neighbor, prob * totalProb])
+//         }
+//     }
+
+//     return 0
+// };
+
+// function getAdjacencyList(edges, succProb, n) {
+//     const list = Array.from({ length: n }, () => [])
+
+//     for (let i = 0; i < edges.length; i++) {
+//         const [a, b] = edges[i]
+
+//         list[a].push([b, succProb[i]])
+//         list[b].push([a, succProb[i]])
+//     }
+
+//     return list
+// }
+
 // undirected weighted graph
 // n-nodes (0 indexed)
 // edges[i] = [a, b], probability of success succProb[i]
@@ -35,15 +72,19 @@ var maxProbability = function(n, edges, succProb, start, end) {
     const probMap = new Array(n).fill(0)
     probMap[start] = 1 // 100% getting from the start to the start
     
-    const queue = [ [probMap[start], start] ]
+    const queue = new PriorityQueue({
+        compare: (a, b) => b[0] - a[0]
+    })
+    
+    queue.enqueue([probMap[start], start])
     
     // queue has stuff, and we haven't visited all nodes
     // while (queue.length && visited.size < n) {
-    while (queue.length && !visited.has(end)) {
-        // const [prob, node] = queue.reduce((a, b) => a[0] > b[0] ? a : b)
+    while (!queue.isEmpty() && !visited.has(end)) {
+        // const [prob, node] = queue.reduce((a, b) => b[0] - a[0])
         // const idx = queue.indexOf([prob, node])
         // queue.splice(idx, 1)
-        const [prob, node] = queue.shift()
+        const [prob, node] = queue.dequeue()
         
         if (!visited.has(node)) {
             visited.add(node)
@@ -53,12 +94,11 @@ var maxProbability = function(n, edges, succProb, start, end) {
                 for (let neighbor of graph[node]) {
                     const [nodeB, probToNodeB] = neighbor
                     let pathProb = prob * probToNodeB
-                    queue.push([pathProb, nodeB])
+                    queue.enqueue([pathProb, nodeB])
                 }
-
-                // sort after we enqueue all neighbors
-                // largest prob first
-                queue.sort((a, b) => a[0] > b[0] ? -1 : 1)
+//                 // sort after we enqueue all neighbors
+//                 // largest prob first
+//                 queue.sort((a, b) => a[0] > b[0] ? -1 : 1)
             }
         }
     }
