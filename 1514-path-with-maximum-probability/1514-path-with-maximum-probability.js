@@ -77,18 +77,14 @@ var maxProbability = function(n, edges, succProb, start, end) {
     })
     
     queue.enqueue([probMap[start], start])
-    
-    // queue has stuff, and we haven't visited all nodes
-    // while (queue.length && visited.size < n) {
-    while (!queue.isEmpty() && !visited.has(end)) {
-        // const [prob, node] = queue.reduce((a, b) => b[0] - a[0])
-        // const idx = queue.indexOf([prob, node])
-        // queue.splice(idx, 1)
+
+    while (!queue.isEmpty()) {
         const [prob, node] = queue.dequeue()
         
         if (!visited.has(node)) {
             visited.add(node)
             probMap[node] = Math.max(prob, probMap[node])
+            if (node === end) return probMap[node]
             
             if (graph[node]) {
                 for (let neighbor of graph[node]) {
@@ -96,9 +92,6 @@ var maxProbability = function(n, edges, succProb, start, end) {
                     let pathProb = prob * probToNodeB
                     queue.enqueue([pathProb, nodeB])
                 }
-//                 // sort after we enqueue all neighbors
-//                 // largest prob first
-//                 queue.sort((a, b) => a[0] > b[0] ? -1 : 1)
             }
         }
     }
