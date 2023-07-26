@@ -7,6 +7,37 @@
  * @return {number}
  */
 
+
+// DIJKSTRA (typically minimim)
+// OPTIMAL path from start node to all other nodes
+// adjacency list
+// Priority Queue => min / max => by weights
+// distance map => best path found so far for every node FROM source
+    // initialized with appropriate default values
+    // dist[source] = special
+// visited set
+// enqueue [source node, dist[sourceNode]]
+// while (!priorityQueue.isEmpty() && visited.size)
+    // dequeue from priority queue
+        // adjust dist[dequeued node] appropriately
+        // (if not in visited)
+            // traverse neighbors
+            // enqueue [neighb, weight[neighb]: curr (NOT SOURCE) to neighb]
+
+// return whatever you need
+
+
+
+
+
+
+
+
+
+
+
+
+
 // var maxProbability = function (n, edges, succProb, start, end) {
 //     const adjacencyList = getAdjacencyList(edges, succProb, n)
 //     const visited = Array(n).fill(false)
