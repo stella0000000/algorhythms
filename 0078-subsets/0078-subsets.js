@@ -27,10 +27,12 @@ const dfs = (nums, currSubsets) => {
     if (nums.length === 0) return currSubsets
     
     let remainder = nums.slice(1)
-    
+    // let currCurrSubsets = currSubsets.map(x => [...x, nums[0]])
     let exclude = dfs(remainder, currSubsets)
+    // 33 doesn't have anything to do with 31
     currSubsets = currSubsets.map(x => [...x, nums[0]])
     let include = dfs(remainder, currSubsets)
+    // let include = dfs(remainder, currCurrSubsets)
     
     return [...include, ...exclude]
 }
