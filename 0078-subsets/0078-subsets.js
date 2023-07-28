@@ -6,38 +6,34 @@ var subsets = function(nums) {
     // include or exclude
     // return dfs(nums, [[]])
     
-    if (nums.length === 0) return [[]]
+    return dfs(nums, [[]])
     
-    let char = nums[0]
-    let remainder = nums.slice(1)
     
-    let excludes = subsets(remainder)
-    let includes = excludes.map(sub => [...sub, char])
+    // bottom up approach return empty away all the way at bottom
+    // build up coming back .. up
+//     if (nums.length === 0) return [[]]
     
-    return [...excludes, ...includes]
+//     let char = nums[0]
+//     let remainder = nums.slice(1)
+    
+//     let excludes = subsets(remainder)
+//     let includes = excludes.map(sub => [...sub, char])
+    
+//     return [...excludes, ...includes]
 };
 
-// const dfs = (nums, currSubsets) => {
-//     // base case
-//     if (nums.length === 0) return currSubsets
+const dfs = (nums, currSubsets) => {
+    // base case
+    if (nums.length === 0) return currSubsets
     
-//     // what am i returning
-//     // currSubsets.push(nums[0], currSubsets)
+    let remainder = nums.slice(1)
     
-//     let right = dfs(nums.slice(1), currSubsets)  // exclude
+    let exclude = dfs(remainder, currSubsets)
+    currSubsets = currSubsets.map(x => [...x, nums[0]])
+    let include = dfs(remainder, currSubsets)
     
-//     currSubsets.map(subset => subset.push(nums[0]))
-//     // for (const subset of currSubsets) {
-//     //     subset.push(nums[0])
-//     // }
-    
-//     let left = dfs(nums.slice(1), currSubsets) // include
-    
-//     // console.log(nums.slice(1))
-//     // console.log({ left, right, currSubsets })
-    
-//     return [...left, ...right]
-// }
+    return [...include, ...exclude]
+}
 
 // return all possible subsets
 // no dupes, any order
