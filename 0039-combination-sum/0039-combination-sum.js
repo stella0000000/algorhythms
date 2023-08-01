@@ -13,22 +13,35 @@
 
 const combinationSum = (candidates, target) => {
     const res = []
+    // dfs recursion
+    // track index, currCandidates, currSum
+    // base cases:
+        // if currSum === target
+            // res.push([...currCandidates])
+            // return
+        // else if index exceeds, or currSum > target return (no good branch)
     
-    const dfs = (i, curr, total) => {
-        if (total === target) {
-            res.push([...curr])
+    // num = candidates[i]
+    // currCandidates.push(num)
+    // dfs(i, currCandidates, currSum + num)
+    // or, jk above doesn't work
+    
+    // currCandidates.pop()
+    // dfs(i+1, currCandidates, currSum)
+    
+    const dfs = (i, currCandidates, currSum) => {
+        if (currSum === target) {
+            res.push([...currCandidates])
             return
         }
         
-        if (i >= candidates.length || total > target) {
-            return
-        }
+        if (i >= candidates.length || currSum > target) return
         
         let num = candidates[i]
-        curr.push(num)
-        dfs(i, curr, total + num)
-        curr.pop()
-        dfs(i+1, curr, total)
+        currCandidates.push(num)
+        dfs(i, currCandidates, currSum + num)
+        currCandidates.pop()
+        dfs(i+1, currCandidates, currSum)
     }
     
     dfs(0, [], 0)
