@@ -11,9 +11,7 @@
 // where chosen numbers SUM to target
 // any order
 
-const combinationSum = (candidates, target) => {
-    const res = []
-    // dfs recursion
+// dfs recursion - accumulation style
     // track index, currCandidates, currSum
     // base cases:
         // if currSum === target
@@ -28,18 +26,27 @@ const combinationSum = (candidates, target) => {
     
     // currCandidates.pop()
     // dfs(i+1, currCandidates, currSum)
+
+const combinationSum = (candidates, target) => {
+    const res = []
     
     const dfs = (i, currCandidates, currSum) => {
+        // include base case
         if (currSum === target) {
             res.push([...currCandidates])
             return
         }
         
+        // abandon base case
         if (i >= candidates.length || currSum > target) return
         
         let num = candidates[i]
+        
+        // include
         currCandidates.push(num)
         dfs(i, currCandidates, currSum + num)
+        
+        // exclude
         currCandidates.pop()
         dfs(i+1, currCandidates, currSum)
     }
@@ -47,6 +54,15 @@ const combinationSum = (candidates, target) => {
     dfs(0, [], 0)
     return res
 }
+
+
+
+
+
+
+
+
+
 
 // var combinationSum = function (candidates, target, index = 0, combination = [], combinations = []) {
 //     if (target < 0) return combinations
