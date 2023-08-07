@@ -10,42 +10,30 @@
 var letterCombinations = function(digits) {
     if (digits.length === 0) return []
     
-    const mapped = mapDigits(digits)
-    const res = []
+    let res = []
+    const str = {
+        '2': 'abc',
+        '3': 'def',
+        '4': 'ghi',
+        '5': 'jkl',
+        '6': 'mno',
+        '7': 'pqrs',
+        '8': 'tuv',
+        '9': 'wxyz',
+    }
     
-    // for (let char of test) console.log({char})
-    // index i of currStr we're building
-    const backtrack = (i, currStr) => {
-        if (currStr.length === digits.length) {
-            res.push(currStr)
+    const backtrack = (i, curStr) => {
+        if (curStr.length === digits.length) {
+            res.push(curStr)
             return
         }
-
-        for (let char of mapped[digits[i]]) {
-            // currStr += char => doesn't work
-            backtrack(i+1, currStr+char)
+        for (const char of str[digits[i]]) {
+            backtrack(i+1, curStr+char)
         }
+
     }
     
     backtrack(0, '')
+    
     return res
 };
-
-const mapDigits = (digits) => {
-    const graph = {}
-    
-    for (let digit of digits) {
-        digit = Number(digit)
-        if (!(digit in graph)) graph[digit] = []
-        if (digit === 2) graph[digit] = 'abc'
-        if (digit === 3) graph[digit] = 'def'
-        if (digit === 4) graph[digit] = 'ghi'
-        if (digit === 5) graph[digit] = 'jkl'
-        if (digit === 6) graph[digit] = 'mno'
-        if (digit === 7) graph[digit] = 'pqrs'
-        if (digit === 8) graph[digit] = 'tuv'
-        if (digit === 9) graph[digit] = 'wxyz'
-    }
-
-    return graph
-}
