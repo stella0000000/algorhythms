@@ -22,15 +22,16 @@ const combinationSum2 = (candidates, target) => {
     candidates.sort((b,a) => b - a)
     
     const backtrack = (rem, start, current) => {
-        if(rem < 0) return
-        if(rem === 0) {
+        if (rem < 0) return
+        
+        if (rem === 0) {
             result.push(current.slice())
             return
         }
         
         for(let i = start; i < candidates.length; i++){
             let num = candidates[i]
-            if(i > start && num === candidates[i - 1]) continue
+            if (i > start && num === candidates[i - 1]) continue
             current.push(num)
             backtrack(rem - num, i + 1, current.slice())
             current.pop()
@@ -38,8 +39,7 @@ const combinationSum2 = (candidates, target) => {
     }
     
     backtrack(target, 0 , [])
-    
-    return result;
+    return result
 }
 
 // var combinationSum2 = function(candidates, target) {
