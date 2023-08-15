@@ -10,7 +10,7 @@ const decodeString = (s) => {
     const stack = []
     
     for (let char of s) {
-        console.log(stack, currnum, currstr)
+        // console.log(stack, currnum, currstr)
         if (char === '[') {
             stack.push(currnum)
             stack.push(currstr)
