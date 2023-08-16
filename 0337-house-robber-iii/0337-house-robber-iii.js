@@ -20,8 +20,8 @@ const rob = (root) => {
     function dfs(node) {
         if (!node) return { withRoot: 0, withoutRoot: 0 }
         
-        let left = (node.left) ? dfs(node.left) : { withRoot: 0, withoutRoot: 0}
-        let right = (node.right) ? dfs(node.right) : { withRoot: 0, withoutRoot: 0}
+        let left = dfs(node.left)
+        let right = dfs(node.right)
         
         let withRoot = node.val + left.withoutRoot + right.withoutRoot
         
