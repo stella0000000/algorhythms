@@ -16,8 +16,10 @@
 // binary tree
 // police notified if 2 directly linked houses are broken into
 
+
 const rob = (root) => {
     function dfs(node) {
+        // go all the way to bottom
         if (!node) return { withRoot: 0, withoutRoot: 0 }
         
         let left = dfs(node.left)
