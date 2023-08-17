@@ -43,13 +43,13 @@ function halfyDfs(node, freq, price, visited, graph) {
     let half = (price[node] / 2) * freq[node]
     let notHalf = price[node] * freq[node]
     // console.log({ node })
-    console.log({node}, price[node], freq[node])
-    console.log({ half, notHalf})
+    // console.log({node}, price[node], freq[node])
+    // console.log({ half, notHalf})
 
     for (let neighbor of graph[node]) {
-        console.log({ neighbor })
+        // console.log({ neighbor })
         let res = halfyDfs(neighbor, freq, price, visited, graph)
-        console.log({ res })
+        // console.log({ res })
         half  += res.notHalf
         notHalf += Math.min(res.notHalf, res.half)
     }
