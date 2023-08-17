@@ -7,7 +7,6 @@
  */
 
 // undirected, unrooted tree => n nodes
-
 // traverse all trips to build frequency map for graph
 // then do stuff w freq map
 
@@ -22,6 +21,7 @@ const minimumTotalPrice = (n, edges, price, trips) => {
         const currPath = [src]
     
         dfs(src, dst, graph, currPath, visited)
+        // dfs(src, dst, graph, visited)
         // currPath.push(src)
         
         for (let node of currPath) {
@@ -52,10 +52,27 @@ function halfyDfs(node, freq, price, visited, graph) {
     return { half, notHalf }
 }
 
+// what do you want to do
+// when do i return true / false
+// where do i push (either as side effect)
+
+// const dfs = (src, dst, graph, visited) => {
+//     if (src === dst) return [dst]
+//     if (visited.has(String(src))) return []
+//     visited.add(String(src))
+    
+//     for (let neighbor of graph[src]) {
+//         let path = dfs(neighbor, dst, graph, visited)
+//         if (path) path.push(src)
+//     }
+    
+//     return path
+// }
+
 const dfs = (src, dst, graph, currPath, visited) => {
-    if (src === dst) return true
-    if (visited.has(String(src))) return false
-    visited.add(String(src))
+    if (src === dst) return true //
+    if (visited.has(String(src))) return false //
+    visited.add(String(src))  //
     
     for (let neighbor of graph[src]) {
         if (dfs(neighbor, dst, graph, currPath, visited)) {
