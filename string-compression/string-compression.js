@@ -31,4 +31,5 @@ var compress = function(chars) {
     }
     
     while (chars.length > idx) chars.pop()
+    return chars.length
 };
