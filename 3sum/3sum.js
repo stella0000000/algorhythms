@@ -28,6 +28,7 @@ var threeSum = function(nums) {
                 res.push([a, nums[left], nums[right]])
                 // update pointers
                 left++
+                right--
                 while (nums[left] === nums[left - 1] && left < right) left++
             }
         }
