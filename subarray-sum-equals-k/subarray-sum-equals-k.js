@@ -11,7 +11,10 @@ var subarraySum = function(nums, k) {
     
     for (const num of nums) {
         sum += num
-        if (hashmap[sum - k]) count += hashmap[sum - k]
+        let complement = sum - k
+        
+        if (hashmap[complement]) count += hashmap[complement]
+        
         hashmap[sum] ? hashmap[sum]++ : hashmap[sum] = 1
     }
     return count
