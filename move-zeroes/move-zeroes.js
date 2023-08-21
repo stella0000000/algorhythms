@@ -9,20 +9,13 @@ var moveZeroes = function(nums) {
         if (nums[r] !== 0) {
             [nums[l], nums[r]] = [nums[r], nums[l]]
             l++ // nonzero now
+            // // only increment l when it's not a 0
         }
     }
     
     // O(n) Time Complexity
 	// 2 Pointers
-    // let l = 0
     
-	// for(let r = 0; r < nums.length; r++) {
-	// if (nums[r] !== 0) {
-	// [nums[r], nums[l]] = [nums[l], nums[r]]
-	// l++
-	// // only increment l when it's not a 0
-	// }
-	// }
 	return nums
 };
 
