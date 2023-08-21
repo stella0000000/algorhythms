@@ -9,23 +9,16 @@ var merge = function(nums1, m, nums2, n) {
     m--
     n--
     let i = nums1.length - 1
-    
-    // [1,2,3,0,0,0]
-    // [2,5,6]
-    
-    // m = 5, n=2
-    // 0 >= 6
-    
+
     while (i >= 0) {
-        if (n > -1 && m > -1 && nums1[m] >= nums2[n]) {
-          nums1[i] = nums1[m]
-          nums1[m] = nums2[n]
-          m--
+        if (n > -1 && m > -1 && nums1[m] >= nums2[n]) { // swap
+            nums1[i] = nums1[m]
+            nums1[m] = nums2[n]
+            m--
         } else if (n > -1) {
             nums1[i] = nums2[n]
             n--
-        }
-
+       }
         i--
     }
 };
