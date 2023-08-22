@@ -9,8 +9,8 @@ var generate = function(numRows) {
         let lastRow = output[output.length-1]
         let row = [1]
         
-        for (let j=1; j<lastRow.length; j++) {
-            row.push(lastRow[j] + lastRow[j-1])
+        for (let j=0; j<lastRow.length-1; j++) {
+            row.push(lastRow[j] + lastRow[j+1])
         }
         
         row.push(1)
