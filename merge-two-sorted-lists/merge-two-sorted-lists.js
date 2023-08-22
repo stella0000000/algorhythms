@@ -17,17 +17,22 @@ var mergeTwoLists = function(list1, list2) {
     let tail = head
     
     while (c1 && c2) {
-        if (c1.val < c2.val) {
+        let v1 = c1.val
+        let v2 = c2.val
+        
+        if (v1 < v2) {
             tail.next = c1
             c1 = c1.next
         } else {
             tail.next = c2
             c2 = c2.next
         }
+        
         tail = tail.next
     }
     
     tail.next = c1 ? c1 : c2
     
     return head.next
+
 };
