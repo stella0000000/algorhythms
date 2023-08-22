@@ -9,8 +9,9 @@ var threeSum = function(nums) {
     nums.sort((a,b) => a-b)
     
     for (let i = 0; i < nums.length; i++) {
-        const currNum = nums[i]
         const prevNum = nums[i-1]
+        const currNum = nums[i]
+        
         if (currNum > 0) break
         // not first val in input arr & same value as before.. don't wanna reuse
         if (i > 0 && currNum === prevNum) continue
@@ -30,6 +31,7 @@ var threeSum = function(nums) {
                 // update pointers
                 left++
                 right--
+                // continue with current `i`, sliding window
                 while (nums[left] === nums[left - 1] && left < right) left++
             }
         }
