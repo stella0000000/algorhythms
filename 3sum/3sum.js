@@ -5,27 +5,28 @@
 
 // nums[], return triplets [nums[i], nums[j], nums[k]] === 0, i!==j!==k
 var threeSum = function(nums) {
-    const res = [];
+    const res = []
     nums.sort((a,b) => a-b)
-
+    
     for (let i = 0; i < nums.length; i++) {
-        const a = nums[i]
-        if (a > 0) break
+        const currNum = nums[i]
+        const prevNum = nums[i-1]
+        if (currNum > 0) break
         // not first val in input arr & same value as before.. don't wanna reuse
-        if (i > 0 && a === nums[i - 1]) continue
+        if (i > 0 && currNum === prevNum) continue
 
         let left = i + 1
         let right = nums.length - 1
         
         while (left < right) {
-            const sum = a + nums[left] + nums[right]
+            const sum = currNum + nums[left] + nums[right]
             
             if (sum > 0) {
                 right--
             } else if (sum < 0) {
                 left++
             } else {
-                res.push([a, nums[left], nums[right]])
+                res.push([currNum, nums[left], nums[right]])
                 // update pointers
                 left++
                 right--
@@ -33,5 +34,6 @@ var threeSum = function(nums) {
             }
         }
     }
+    
     return res
 };
