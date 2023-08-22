@@ -31,7 +31,7 @@ var threeSum = function(nums) {
                 // update pointers
                 left++
                 right--
-                // continue with current `i`, sliding window
+                // continue with current `i`, adjust left if it's the same as previous
                 while (nums[left] === nums[left - 1] && left < right) left++
             }
         }
