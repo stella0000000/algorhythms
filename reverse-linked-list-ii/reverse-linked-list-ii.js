@@ -12,32 +12,6 @@
  * @return {ListNode}
  */
 
-// const reverseBetween = (head, left, right) => {
-//     let dummyHead = new ListNode(0, head)
-//     let leftPrev = dummyHead
-//     let curr = head
-    
-//     while (curr && curr.val !== left) {
-//         leftPrev = curr
-//         curr = curr.next
-//     }
-//     // [ 1 2 3 4 5]
-//     // [ 1 4 3 2 5]
-    
-//     let prev = null
-//     let numTimes = right - left + 1 // for reversal
-    
-//     for (let i=0; i<numTimes; i++) {
-//         let next = curr.next
-//         curr.next = prev
-//         prev = curr
-//         curr = next
-//     }
-    
-//     leftPrev.
-//     return dummyHead.next
-// }
-
 const reverseBetween = (head, left, right) => {
     let dummyNode = new ListNode(0, head)
     let leftPrev = dummyNode
@@ -51,10 +25,10 @@ const reverseBetween = (head, left, right) => {
     let prev = null
     let numReverse = right - left + 1
     for (let i=0; i<numReverse; i++) {
-        let nextTemp = curr.next
+        let next = curr.next
         curr.next = prev
         prev = curr
-        curr = nextTemp
+        curr = next
     }
     
     leftPrev.next.next = curr
