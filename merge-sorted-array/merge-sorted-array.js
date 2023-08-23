@@ -8,8 +8,7 @@
 var merge = function(nums1, m, nums2, n) {
     m--
     n--
-    let i = nums1.length - 1
-
+    
     for (let i=nums1.length-1; i>=0; i--) {
         if (n > -1 && m > -1 && nums1[m] >= nums2[n]) { // swap
             nums1[i] = nums1[m]
