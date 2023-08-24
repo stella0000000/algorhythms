@@ -26,7 +26,7 @@ var flatten = function(head) {
     let curr = head
     const stack = []
 
-    while (curr !== null) {
+    while (curr) {
         if (curr.child) {
             if (curr.next) stack.push(curr.next)  // reserve in stack
             curr.next = curr.child
