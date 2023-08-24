@@ -28,10 +28,10 @@ const fillLevels = (root, levels, depth) => {
     if (!root) return
     
     if (!(depth in levels)) {
-        levels[depth] = [root.val]
-    } else {
-        levels[depth].push(root.val)
+        levels[depth] = []
     }
+    
+    levels[depth].push(root.val)
     
     fillLevels(root.left, levels, depth+1)
     fillLevels(root.right, levels, depth+1)
