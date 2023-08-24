@@ -27,10 +27,7 @@ var rightSideView = function(root) {
 const fillLevels = (root, levels, depth) => {
     if (!root) return
     
-    if (!(depth in levels)) {
-        levels[depth] = []
-    }
-    
+    if (!(depth in levels)) levels[depth] = []
     levels[depth].push(root.val)
     
     fillLevels(root.left, levels, depth+1)
