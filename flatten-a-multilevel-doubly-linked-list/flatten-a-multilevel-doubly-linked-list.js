@@ -32,7 +32,7 @@ var flatten = function(head) {
             curr.next = curr.child
             curr.next.prev = curr
             curr.child = null  // taken care of
-        } else if (curr.next === null && stack.length) {
+        } else if (!curr.next && stack.length) {
             // no next, but nodes remain from previous iterations
             curr.next = stack.pop()
             curr.next.prev = curr
