@@ -8,17 +8,16 @@ var trap = function(height) {
     let right = height.length -1
     let lh = arr[left]
     let rh = arr[right]
+    let water = 0
 
     while (left < right) {
-        // # print(filled_array)
-        
         // fill from left
         while (left < right && lh <= rh) {
             left++
             if (arr[left] > lh) {
                 lh = arr[left]
             } else {
-                arr[left] = lh
+                water += lh - height[left]
             }
         }
         
@@ -28,21 +27,13 @@ var trap = function(height) {
             if (arr[right] > rh) {
                 rh = arr[right]
             } else {
-                arr[right] = rh
+                water += rh - height[right]
             }
         }
     }
 
-    // # compare sums
-    let heightSum = 0
-    let arrSum = 0
-    
-    for (let num of height) heightSum += num
-    for (let num of arr) arrSum += num
-    
-    return(arrSum - heightSum)
+    return water
 };
-
 
 
 // # [0,1,0,2,1,0,1,3,2,1,2,1] = 14
