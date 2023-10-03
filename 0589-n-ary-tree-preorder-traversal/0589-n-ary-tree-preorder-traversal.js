@@ -19,7 +19,7 @@ var preorder = function(root) {
         const node = stack.pop()
         
         vals.push(node.val)
-        stack.push(...node.children.reverse())
+        if (node.children) stack.push(...node.children.reverse())
     }
     
     return vals
