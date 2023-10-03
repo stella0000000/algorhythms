@@ -16,13 +16,13 @@
 var postorder = function(root) {
     if (!root) return []
     
-    const stack = [root]
+    const stack = [ root ]
     const vals = []
     
     while (stack.length) {
         const node = stack.pop()
-        if (node) vals.push(node.val)
-        for (let child of node.children) stack.push(child)
+        vals.push(node.val)
+        if (node.children.length) stack.push(...node.children)
     }
     
     return vals.reverse()
