@@ -13,16 +13,18 @@ var traverse = function(node, map) {
         // map new nodes
             // key is index: val is reference
     
-    if (!map[node.val]) {
+    if (!(node.val in map)) {
+        // doesn't exist yet
         map[node.val] = new Node(node.val)
     } else {
+        // it exists, return it
         return map[node.val]    // if it exists, we just return it
     }
 
     node.neighbors.map(neighbor => {
         // make sure new node, i.e. map[node.val]
         // has cloned versions of these in its neighbors
-        return map[node.val].neighbors.push(traverse(neighbor, map))
+        map[node.val].neighbors.push(traverse(neighbor, map))
     })
 
     return map[node.val]
@@ -38,7 +40,6 @@ var traverse = function(node, map) {
 
 var cloneGraph = function(node) {
     if (!node) return null
-
     const map = {}
     
     // running map of visited nodes
