@@ -16,9 +16,9 @@ var maxDepth = function (root) {
     
     function traverse(node, depth) {
         if (!node) return
-        if(depth > max) max = depth
+        if (depth > max) max = depth
         
-        for(let child of node.children){
+        for (let child of node.children) {
             traverse(child, depth+1);
             // use depth +1, if use depth++
             // it will pass the old depth value, not the updated one!
@@ -26,7 +26,5 @@ var maxDepth = function (root) {
     }
     
     traverse(root, 1)
-    return max
-
-    
+    return max    
 };
