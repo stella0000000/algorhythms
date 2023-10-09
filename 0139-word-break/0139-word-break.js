@@ -49,7 +49,6 @@ const wordBreak = (s, wordDict) => {
     
     while (queue.length) {
         const start = queue.shift()
-        console.log({ start })
         
         // if we haven't visited this starting char
         if (!visited.has(start)) {
@@ -60,7 +59,6 @@ const wordBreak = (s, wordDict) => {
                 }
             }
             visited.add(start)
-            console.log({ visited })
         }
     }
     
