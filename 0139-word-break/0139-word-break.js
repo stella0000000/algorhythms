@@ -21,7 +21,7 @@ const wordBreak = (s, wordDict) => {
     for (let end=1; end<=s.length; end++) {
         for (let start=0; start<end; start++) {
             const w = s.slice(start, end)
-            console.log({ start, end })
+            // console.log({ start, end })
             if (dp[start] && set.has(w)) {
                 dp[end] = true
                 break
