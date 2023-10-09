@@ -19,7 +19,7 @@ function findCombination(n, k, position, seq, res) {
     
     seq.push(position)
     findCombination(n, k - 1, position + 1, seq, res)
-    seq.pop()
     
+    seq.pop()
     findCombination(n, k, position + 1, seq, res)
 }
