@@ -15,26 +15,56 @@
 // parse from left to right
 // can we make a split
 
-
 const wordBreak = (s, wordDict) => {
-    const arr = []
+    if (s == "") return []
     
-    const go = (str, val) => {
-        if (str === '') {
-            arr.push(val.trim())
-            return
-        }
+    // since we are employing DFS, we want to cache any duplicate subproblems
+    const memo = {}
+    
+    const dfs = (s) => {
+        if (s in memo) return memo[s] 
         
+        let res = []
         for (let word of wordDict) {
-            if (str.startsWith(word)) {
-                go(str.slice(word.length), val + word + ' ');
+            // base cases
+            if (!s.startsWith(word)) continue
+            if (word.length == s.length) res.push(word)
+            
+            else {
+                let resultOfRest = dfs(s.slice(word.length)) 
+                for (let v of resultOfRest) {
+                    v = word + ' ' + v
+                    res.push(v)
+                }
             }
         }
+        
+        memo[s] = res
+        return res 
     }
     
-    go(s, '')
-    return arr
+    return dfs(s)
 }
+
+// const wordBreak = (s, wordDict) => {
+//     const arr = []
+    
+//     const go = (str, val) => {
+//         if (str === '') {
+//             arr.push(val.trim())
+//             return
+//         }
+        
+//         for (let word of wordDict) {
+//             if (str.startsWith(word)) {
+//                 go(str.slice(word.length), val + word + ' ');
+//             }
+//         }
+//     }
+    
+//     go(s, '')
+//     return arr
+// }
 
 
 
