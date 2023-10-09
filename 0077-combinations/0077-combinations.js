@@ -4,22 +4,22 @@
  * @return {number[][]}
  */
 var combine = function(n, k) {
-    const res = [];
+    const res = []
     findCombination(n, k, 1, [], res)
-    return res;
+    return res
 };
 
-function findCombination(n, k, position, seq, res) {
+function findCombination(n, k, i, curr, res) {
     if (k === 0) {
-        res.push([...seq])
+        res.push([...curr])
         return
     } 
     
-    if (position > n) return
+    if (i > n) return
     
-    seq.push(position)
-    findCombination(n, k - 1, position + 1, seq, res)
+    curr.push(i)
+    findCombination(n, k - 1, i + 1, curr, res)
     
-    seq.pop()
-    findCombination(n, k, position + 1, seq, res)
+    curr.pop()
+    findCombination(n, k, i + 1, curr, res)
 }
