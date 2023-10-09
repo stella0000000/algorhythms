@@ -19,7 +19,8 @@ var minSteps = function(s, t) {
     let changes = 0
     for (let letter of t) {
         if (hash[letter]) hash[letter]--
-        else changes++
+        else (changes++)
     }
+    
     return changes
 };
