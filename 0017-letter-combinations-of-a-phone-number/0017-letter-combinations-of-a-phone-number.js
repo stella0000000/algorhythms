@@ -23,10 +23,11 @@ var letterCombinations = function(digits) {
     }
     
     const backtrack = (i, curStr) => {
-        if (curStr.length === digits.length) {
+        if (i === digits.length) {
             res.push(curStr)
             return
         }
+        
         for (const char of str[digits[i]]) {
             backtrack(i+1, curStr+char)
         }
@@ -34,6 +35,5 @@ var letterCombinations = function(digits) {
     }
     
     backtrack(0, '')
-    
     return res
 };
