@@ -11,84 +11,61 @@
 // cache
 // DP (bottom up approach)
 
+// const wordBreak = (s, wordDict) => {
+//     // DYNAMIC PROGRAMMING
+//     if (!wordDict || wordDict.length === 0) return false
+//     const set = new Set(wordDict)
+//     const dp = new Array(s.length+1).fill(false)
+//     dp[0] = true
+    
+//     for (let end=1; end<=s.length; end++) {
+//         for (let start=0; start<end; start++) {
+//             const w = s.slice(start, end)
+//             // console.log({ start, end })
+//             if (dp[start] && set.has(w)) {
+//                 dp[end] = true
+//                 break
+//             }
+            
+//             // console.log({ dp })
+//         }
+//         // console.log({ dp })
+//     }
+    
+//     return dp[s.length]
+// }
+
 const wordBreak = (s, wordDict) => {
-    // DYNAMIC PROGRAMMING
+    // BFS
     if (!wordDict || wordDict.length === 0) return false
     const set = new Set(wordDict)
-    const dp = new Array(s.length+1).fill(false)
-    dp[0] = true
     
-    for (let end=1; end<=s.length; end++) {
-        for (let start=0; start<end; start++) {
-            const w = s.slice(start, end)
-            // console.log({ start, end })
-            if (dp[start] && set.has(w)) {
-                dp[end] = true
-                break
+    // When s = 'catsandog', wordDict = ['cats', 'ca', 'ts']
+  // After 'cats' and 'ca', it will become 'andog', 'tsandog'
+  // For 'tsandog', after 'ts', it will become 'andog' again, visited set here is for memoization
+    
+    const visited = new Set()
+    const queue = [0]
+    
+    while (queue.length) {
+        const start = queue.shift()
+        console.log({ start })
+        
+        // if we haven't visited this starting char
+        if (!visited.has(start)) {
+            for (let end=start+1; end <= s.length; end++) {
+                if (set.has(s.slice(start, end))) {
+                    if (end === s.length) return true
+                    queue.push(end)
+                }
             }
-            
-            // console.log({ dp })
+            visited.add(start)
+            console.log({ visited })
         }
-        console.log({ dp })
     }
     
-    return dp[s.length]
+    return false
 }
-
-// const wordBreak = (s, wordDict) => {
-//     // BFS
-    
-//     if (!wordDict || wordDict.length === 0) return false
-//     const set = new Set(wordDict)
-//     const visited = new Set() // for visited "start" nodes
-//     const q = [0]
-    
-//     while (q.length) {
-//         const start = q.shift()
-        
-//         if (!visited.has(start)) {
-//             for (let end=start+1; end <= s.length; end++) {
-//                 if (end === s.length) return true
-//                 q.push(end)
-//             }
-//         }
-//         visited.add(start)
-//     }
-    
-//     return false
-// }
-
-// const wordBreak = (s, wordDict) => {
-//     // BFS
-//     if (!wordDict || wordDict.length === 0) return false
-//     const set = new Set(wordDict)
-    
-//     // When s = 'catsandog', wordDict = ['cats', 'ca', 'ts']
-//   // After 'cats' and 'ca', it will become 'andog', 'tsandog'
-//   // For 'tsandog', after 'ts', it will become 'andog' again, visited set here is for memoization
-    
-//     const visited = new Set()
-//     const queue = [0]
-    
-//     while (queue.length) {
-//         const start = queue.shift()
-//         console.log({ start })
-        
-//         // if we haven't visited this starting char
-//         if (!visited.has(start)) {
-//             for (let end=start+1; end <= s.length; end++) {
-//                 if (set.has(s.slice(start, end))) {
-//                     if (end === s.length) return true
-//                     queue.push(end)
-//                 }
-//             }
-//             visited.add(start)
-//             console.log({ visited })
-//         }
-//     }
-    
-//     return false
-// }
 
 
 // const wordBreak = (s, wordDict) => {
