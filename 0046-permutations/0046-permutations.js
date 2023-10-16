@@ -7,43 +7,43 @@
 /*
 */
 
-const permute = (nums) => {
-    const res = []
-    const n = nums.length
+// const permute = (nums) => {
+//     const res = []
+//     const n = nums.length
     
-    const recurse = (nums, currPerm) => {
-        // build a single permutation
-        // take first num of nums
+//     const recurse = (nums, currPerm) => {
+//         // build a single permutation
+//         // take first num of nums
         
-        // recurse into next num of nums        
-        // permut start w 1 => [1]
-        //     pertmut next without whatever the prev ele was
-        // permut start w 2
-        // permut start w 3
+//         // recurse into next num of nums        
+//         // permut start w 1 => [1]
+//         //     pertmut next without whatever the prev ele was
+//         // permut start w 2
+//         // permut start w 3
         
-        if (currPerm.length === n) {
-            res.push([...currPerm])
-            return
-        }
+//         if (currPerm.length === n) {
+//             res.push([...currPerm])
+//             return
+//         }
         
-        for (let i=0; i<nums.length; i++) {
-            // WRONG
-            // calling with [1, 2, 3]
-            // currPerm.push(nums[i])
-            // recurse([...nums.slice(0, i), ...nums.slice(i+1)], [...currPerm])
+//         for (let i=0; i<nums.length; i++) {
+//             // WRONG
+//             // calling with [1, 2, 3]
+//             // currPerm.push(nums[i])
+//             // recurse([...nums.slice(0, i), ...nums.slice(i+1)], [...currPerm])
             
-            // need to copy BEFORE pushing
-            // call separately with [1], [2], [3]
-            let clone = [...currPerm]
-            clone.push(nums[i])
-            recurse([...nums.slice(0, i), ...nums.slice(i+1)], clone)
-        }
-    }
+//             // need to copy BEFORE pushing
+//             // call separately with [1], [2], [3]
+//             let clone = [...currPerm]
+//             clone.push(nums[i])
+//             recurse([...nums.slice(0, i), ...nums.slice(i+1)], clone)
+//         }
+//     }
     
-    recurse(nums, [])
+//     recurse(nums, [])
     
-    return res
-}
+//     return res
+// }
 
 // backtracking generates all solutions one ele @ a time
 // use an arr => curr[] => curr permutation we're building
@@ -63,30 +63,30 @@ const permute = (nums) => {
 // [[], [1], [2], []]
 // O(n * n!)
 
-// const permute = (nums) => {
-//     const ans = []
-//     backtrack([], nums, ans)
-//     return ans
-// }
+const permute = (nums) => {
+    const ans = []
+    backtrack([], nums, ans)
+    return ans
+}
 
-// const backtrack = (curr, nums, ans) => {
-//     // base case reached the end
-//     if (curr.length === nums.length) {
-//         ans.push([...curr]) // add copy of curr return to ans
-//         return
-//     }
+const backtrack = (curr, nums, ans) => {
+    // base case reached the end
+    if (curr.length === nums.length) {
+        ans.push([...curr]) // add copy of curr return to ans
+        return
+    }
     
-//     for (let i=0; i<nums.length; i++) {
-//         let num = nums[i]
+    for (let i=0; i<nums.length; i++) {
+        let num = nums[i]
         
-//         // don't want duplicates within each sub permutation
-//         if (!curr.includes(num)) {
-//             curr.push(num)
-//             backtrack(curr, nums, ans)
-//             curr.pop(num)
-//         }
-//     }    
-// }
+        // don't want duplicates within each sub permutation
+        if (!curr.includes(num)) {
+            curr.push(num)
+            backtrack(curr, nums, ans)
+            curr.pop(num) // porque
+        }
+    }    
+}
 
 // const permute = (nums) => {
 //     const ans = []
