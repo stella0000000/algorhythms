@@ -7,6 +7,31 @@
 /*
 */
 
+const permute = (nums) => {
+    const res = []
+    const n = nums.length
+    
+    const dfs = (nums, currPerm) => {
+        if (currPerm.length === n) {
+            res.push([...currPerm])
+            return
+        }
+        
+        for (let i=0; i<nums.length; i++) {
+            if (!currPerm.includes(nums[i])) {
+                currPerm.push(nums[i])
+                dfs(nums, [...currPerm])
+                currPerm.pop()
+            }
+            // currPerm.push(nums[i])
+            // dfs([...nums.slice(0,i), ...nums.slice(i+1)], [...currPerm])
+            // currPerm.pop()
+        }
+    }
+    
+    dfs(nums, [])
+    return res
+}
 // const permute = (nums) => {
 //     const res = []
 //     const n = nums.length
@@ -63,30 +88,30 @@
 // [[], [1], [2], []]
 // O(n * n!)
 
-const permute = (nums) => {
-    const ans = []
-    backtrack([], nums, ans)
-    return ans
-}
+// const permute = (nums) => {
+//     const ans = []
+//     backtrack([], nums, ans)
+//     return ans
+// }
 
-const backtrack = (curr, nums, ans) => {
-    // base case reached the end
-    if (curr.length === nums.length) {
-        ans.push([...curr]) // add copy of curr return to ans
-        return
-    }
+// const backtrack = (curr, nums, ans) => {
+//     // base case reached the end
+//     if (curr.length === nums.length) {
+//         ans.push([...curr]) // add copy of curr return to ans
+//         return
+//     }
     
-    for (let i=0; i<nums.length; i++) {
-        let num = nums[i]
+//     for (let i=0; i<nums.length; i++) {
+//         let num = nums[i]
         
-        // don't want duplicates within each sub permutation
-        if (!curr.includes(num)) {
-            curr.push(num)
-            backtrack(curr, nums, ans)
-            curr.pop(num) // porque
-        }
-    }    
-}
+//         // don't want duplicates within each sub permutation
+//         if (!curr.includes(num)) {
+//             curr.push(num)
+//             backtrack(curr, nums, ans)
+//             curr.pop(num) // porque
+//         }
+//     }    
+// }
 
 // const permute = (nums) => {
 //     const ans = []
