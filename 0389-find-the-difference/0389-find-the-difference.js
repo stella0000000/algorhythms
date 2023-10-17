@@ -5,19 +5,15 @@
  */
 var findTheDifference = function(s, t) {
     // string: s, string: t
-    s = s.split('').sort()
-    t = t.split('').sort()
-
-    let i=0
-    let count = 0
+    const count = {}
     
-    while (i<s.length) {
-        if (s[i] === t[i]) {
-            i++
-        } else {
-            return t[i]
-        }
+    for (let ch of s) {
+        if (!count[ch]) count[ch] = 0
+        count[ch]++
     }
     
-    return t[i]
+    for (let ch of t) {
+        if (!count[ch]) return ch
+        else count[ch]--
+    }
 };
