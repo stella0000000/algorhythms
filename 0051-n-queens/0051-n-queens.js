@@ -74,19 +74,18 @@ const solveNQueens = (n) => {
         }
         
         // place a queen
-        //console.log(board, { r, c })
         while (r < n) {
-            console.log({ r, c })
             board[r][c] = 'Q'
             // check validity
             if (isValid(board, r, c)) {
                 solver(0, c+1)   // go back to row 0!, next col
-            } 
-            // remove current queen (it's not valid)
+            }
+            // remove current queen (regardless of validity)
             // backtrack
             board[r][c] = "."
             r++
         }
+        
         return        
     }
     
@@ -99,6 +98,10 @@ const format = (board) => {
     for (const row of board) formatted.push(row.join(''))
     return formatted
 }
+
+// try returning ONLY the first solution
+
+
 
 // const solveNQueens = (n) => {
 //     const col = new Set()
