@@ -20,12 +20,6 @@ var validateBinaryTreeNodes = function(n, leftChildArr, rightChildArr) {
         
         if (count > 1) return false
     }
-         2
-        /
-       3
-    0
-   /
-  1
     
     const visited = new Set()
     const queue = [ root ]
