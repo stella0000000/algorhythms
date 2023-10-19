@@ -29,7 +29,7 @@ const findPaths = (node, graph, allPaths, currPath) => {
         findPaths(neighbor, graph, allPaths, [...currPath])
     }
     
-    return
+    // return
 }
 
 
