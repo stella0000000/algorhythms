@@ -19,23 +19,17 @@ var ladderLength = function(beginWord, endWord, wordList) {
     const wordSet = new Set(wordList)
     if (!wordSet.has(endWord)) return 0
     
-    let count = 1
-    const queue = [ beginWord ]
+    const queue = [ [ beginWord, 1 ] ]
 
     while (queue.length > 0) {
-        let queueLength = queue.length
+        const [currWord, dist] = queue.shift()
+        if (currWord === endWord) return dist
 
-        for (let i=0; i<queueLength; i++) {
-            const currWord = queue.shift()
-            if (currWord === endWord) return count
-
-            for (let word of wordSet) {
-                if (!offBySingleLetter(currWord, word)) continue
-                queue.push(word)
-                wordSet.delete(word)
-            }
+        for (let word of wordSet) {
+            if (!offBySingleLetter(currWord, word)) continue
+            queue.push([ word, dist+1 ])
+            wordSet.delete(word)
         }
-        count++
     }
 
     return 0
