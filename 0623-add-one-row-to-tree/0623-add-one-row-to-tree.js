@@ -24,6 +24,7 @@ const addOneRow = (root, val, depth) => {
         let [node, numDepths] = stack.pop()
         
         // for following levels
+        // === 1 bc root starts @ 1
         if (numDepths - 1 === 1) {
             node.left = new TreeNode(val, node.left)
             node.right = new TreeNode(val, null, node.right)
