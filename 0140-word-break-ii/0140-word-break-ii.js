@@ -40,9 +40,12 @@ const wordBreak = (s, wordDict) => {
         if (currStr in memo) return memo[currStr]
         const res = []
         
+        // loop through wordDict
         for (let word of wordDict) {
+            // base case is if !currStr.startsWith(word)
+            // don't do anything
             if (!currStr.startsWith(word)) {
-                
+                continue
             } else {
                 const newStr = currStr.slice(word.length)
                 const nextWords = dfs(newStr)
