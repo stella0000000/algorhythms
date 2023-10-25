@@ -41,9 +41,9 @@ const wordBreak = (s, wordDict) => {
         const res = []
         
         for (let word of wordDict) {
-            if (!currStr.startsWith(word)) continue
-            
-            else {
+            if (!currStr.startsWith(word)) {
+                
+            } else {
                 const newStr = currStr.slice(word.length)
                 const nextWords = dfs(newStr)
                 
