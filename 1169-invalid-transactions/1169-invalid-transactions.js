@@ -2,6 +2,7 @@
  * @param {string[]} transactions
  * @return {string[]}
  */
+
 var invalidTransactions = function(transactions) {
     const invalid = new Array(transactions.length).fill(false)
     const res = []
