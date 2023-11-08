@@ -3,6 +3,10 @@
  * @return {string}
  */
 
+// k[encouded_string]
+// 3[a2[c]] = accacc
+
+
 const decodeString = (s) => {
     const nums = '0123456789'
     let currstr = ''
@@ -10,7 +14,6 @@ const decodeString = (s) => {
     const stack = []
     
     for (let char of s) {
-        // console.log(stack, currnum, currstr)
         if (char === '[') {
             stack.push(currnum)
             stack.push(currstr)
