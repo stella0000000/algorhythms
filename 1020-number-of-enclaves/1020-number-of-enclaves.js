@@ -69,5 +69,5 @@ const inBounds = (grid, r, c) => {
     move consists of walking from 1 land to another
         up, down, left, right
     
-    return number of land cells in grid
+    return number of land cells in grid internally (not at boundaries)
 */
