@@ -1,6 +1,5 @@
-
 var MagicDictionary = function() {
-    this.graph = {}
+    this.set = null
 };
 
 const oneLetterDiff = (w1, w2) => {
@@ -19,15 +18,7 @@ const oneLetterDiff = (w1, w2) => {
  * @return {void}
  */
 MagicDictionary.prototype.buildDict = function(dictionary) {
-    for (const word of dictionary) {
-        if (!this.graph[word]) this.graph[word] = new Set()
-    }
-    
-    for (const word in this.graph) {
-        for (const word2 of dictionary) {
-            if (oneLetterDiff(word, word2)) this.graph[word].add(word2)
-        }
-    }
+    this.set = new Set(dictionary)
 };
 
 /** 
@@ -35,7 +26,7 @@ MagicDictionary.prototype.buildDict = function(dictionary) {
  * @return {boolean}
  */
 MagicDictionary.prototype.search = function(searchWord) {
-    for (const word in this.graph) {
+    for (const word of this.set) {
         if (oneLetterDiff(searchWord, word)) return true
     }
     return false
