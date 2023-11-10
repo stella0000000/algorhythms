@@ -6,39 +6,73 @@
 // k[encoded_string]
 // 3[a2[c]] = accacc
 
-// const decodeString = (s) => {
+/*
+        1) opening braces -> new sequence start
+        add curr string and curr number to the stack, reassign both
+        to initial values
+*/
+
+const decodeString = (s) => {
+    const stack = []
+    let str = ''
+    let num = ''
+    
+    for (const char of s) {
+        if (char === '[') {
+            stack.push([ str, num ])
+            str = ''
+            num = ''
+        } else if (char === ']') {
+            // build
+            const [ prevStr, prevNum ] = stack.pop()
+            str = prevStr + str.repeat(prevNum)
+        } else if (!isNaN(char)) { // number
+            // offset prev currNum by 10th digit
+            // currNum = currNum * 10 + Number(char)
+            num += char
+        } else {
+            str += char
+        }
+        // num
+        // letter
+        // open brace
+            // new sequence
+            // add currStr, currNum to stack
+            // reset currStr, currNum
+        // close brace
+            // build
+            // pop prevChar, prevNum from stack
+            // append to currStr repeated times
+    }
+    
+    return str
+}
+
+
+
+// var decodeString = function(s) {
+//     // return currStr
 //     const stack = []
 //     let currNum = 0
 //     let currStr = ''
-    
+
 //     for (const char of s) {
-        
+//         if (char === '[') {
+//             stack.push([currStr, currNum])
+//             currStr = ''
+//             currNum = 0
+//         } else if (char === ']') {
+//             //build
+//             const [ prevStr, prevNum ] = stack.pop()
+//             currStr = prevStr + currStr.repeat(prevNum)
+//         } else if (!isNaN(char)) {    // string = Number
+//             currNum = currNum * 10 + Number(char)
+//         } else {                      // str
+//             currStr += char
+//         }
 //     }
-// }
-
-var decodeString = function(s) {
-    // return currStr
-    const stack = []
-    let currNum = 0
-    let currStr = ''
-
-    for (const char of s) {
-        if (char === '[') {
-            stack.push([currStr, currNum])
-            currStr = ''
-            currNum = 0
-        } else if (char === ']') {
-            //build
-            const [ prevStr, prevNum ] = stack.pop()
-            currStr = prevStr + currStr.repeat(prevNum)
-        } else if (!isNaN(char)) {    // string = Number
-            currNum = currNum * 10 + Number(char)
-        } else {                      // str
-            currStr += char
-        }
-    }
-    return currStr
-};
+//     return currStr
+// };
 
 // const decodeString = (s) => {
 //     const stack = []
