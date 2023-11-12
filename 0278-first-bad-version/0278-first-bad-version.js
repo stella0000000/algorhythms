@@ -25,9 +25,10 @@ var solution = function(isBadVersion) {
             let mid = Math.floor(left + (right-left) / 2)
             
             if (isBadVersion(mid)) {
-                // go left
+                // go left, BUT this mid could be the smallest
                 right = mid
             } else {
+                // this mid def isn't it
                 left = mid+1
             }
         }
