@@ -25,7 +25,7 @@ HitCounter.prototype.hit = function(timestamp) {
 // remove timestamps with diff >= 300 from queue
 // return size of queue
 HitCounter.prototype.getHits = function(timestamp) {
-    while (timestamp - this.queue[0] >= 300) {
+    while (this.queue.length && timestamp - this.queue[0] >= 300) {
         this.queue.shift()
     }
     
