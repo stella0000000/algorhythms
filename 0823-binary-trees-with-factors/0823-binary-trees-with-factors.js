@@ -15,21 +15,24 @@ const numFactoredBinaryTrees = (arr) => {
     const dp = {}
 
     for (let i=0; i<n; i++) {
-        const numOne = arr[i]
-        dp[numOne] = 1
+        const root = arr[i]
+        // every val can be its own tree
+        dp[root] = 1
 
         // decrement from i-1 to 0
+        // arr[i] is root which is greater than children
         for (let j = i - 1; j >= 0; j--) {
-            const numTwo = arr[j]
+            const rightChild = arr[j]
             // indivisible
-            if (numOne % numTwo !== 0) continue
+            if (root % rightChild !== 0) continue
 
-            const target = numOne / numTwo
+            const target = root / rightChild
             if (target in dp) {
-                dp[numOne] += dp[target] * dp[numTwo]
+                dp[root] += dp[target] * dp[rightChild]
             }
         }
-        ans = (ans + dp[numOne]) % MOD
+        
+        ans = (ans + dp[root]) % MOD
     }
 
     return ans
