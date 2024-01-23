@@ -14,7 +14,7 @@ var lowestCommonAncestor = function(root, nodes) {
     const set = new Set(nodes)
     
     const traverse = (root) => {
-        if (!root) return null
+        if (!root) return
         if (set.has(root)) return root
         
         let left = traverse(root.left)
