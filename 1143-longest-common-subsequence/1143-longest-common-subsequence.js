@@ -15,7 +15,6 @@ const longestCommonSubsequence = (a, b) => {
     
     const dp = initDp(a, b)
     fillDp(dp, a, b)
-    console.log(dp)
     
     return dp[0][0]
 }
