@@ -6,7 +6,6 @@
 var minDistance = function(word1, word2) {
     const dp = initDp(word1, word2)
     fillDp(dp, word1, word2)
-    console.log(dp)
     return dp[0][0]     // bottom up
 }
 
@@ -60,6 +59,5 @@ const fillDp = (dp, w1, w2) => {
   b   x
   d
   _       0
-
 
 */
